@@ -22,7 +22,7 @@ The plugin needs to install additional python packages and copy its source folde
     - 'Run anyway'
 4. [Install the plugin inside QGIS](#Activate)
 
-![win_install_script.gif](win_install_script.gif){height:400px}
+![win_install_script.gif](img/win_install_script.gif){height:400px}
 
 
 ### Linux  

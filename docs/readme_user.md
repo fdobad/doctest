@@ -1,4 +1,4 @@
-        Fire 2 Advanced Analytics & Management Research Center,
+        Fire 2 Advanced Analytics & Management Research Center
 
             Fire Analytics Management
                 (fire2am QGIS plugin)
@@ -47,6 +47,10 @@
 3. Set up the proper CRS for each layer by: `Select layer(s) > 2dary click > 'Set CRS...'`  
     
 __Expect errors if layers and project CRS are not set!__
+
+| setup a new project |
+| --- |
+| <img src="img/qgis_setup_project.gif" alt='cannot load image' > |
 
 #### 3. Weather files:
 Cell2Fire simulator currently support a single wind direction and speed for the whole grid. This vector can change overtime and between scenarios.

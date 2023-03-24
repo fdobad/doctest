@@ -2,8 +2,8 @@
 
 This repo contains a [QGIS](https://qgis.org) [plugin](https://plugins.qgis.org/) for graphically interfacing with Cell2Fire [SB](https://github.com/fire2a/C2FSB) simulator.  
 Choose your guide:
-- [User](readme_user.md)![icon](../img/icon.png)
-- [Developer](readme_dev.md)![icon](../img/icon_dev.png)
+- [User](readme_user.md)![icon](img/icon.png)
+- [Developer](readme_dev.md)![devicon](img/icon_dev.png)
 
 This softwares enables you to simulate thousand of forest fires on a landscape using QGIS. At least you'll need a fuel and elevation layer.
 
@@ -21,6 +21,8 @@ The plugin needs to install additional python packages and copy its source folde
     - 'More info' on the warning dialog
     - 'Run anyway'
 4. [Install the plugin inside QGIS](#Activate)
+
+![win_install_script.gif](win_install_script.gif){height:400px}
 
 
 ### Linux  
@@ -64,7 +66,7 @@ Now you have a new icon on the plugin toolbar and a new plugin menu.
 5. Main results will be added as a layer, the rest will be stored into outputs.gpkg  
 
 ## Screenshot  
-![panel_screenshot](../img/panel_screenshot.png)  
+![panel_screenshot](img/panel_screenshot.png)  
 
 0. On the Plugin Menu this plugin is shown selected  
 1. Its icon is also available on the Plugin Toolbar ![icon](img/icon.png)  

@@ -24,11 +24,7 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
     - 'Run anyway'
 4. [Install the plugin inside QGIS](#activate)
 
-<figure>
-    <img src="img/win_install_script.gif" width=66% alt='missing'>
-    <figcaption>executing installer</figcaption>
-</figure>
-
+<img src="img/win_install_script.gif" width=66% alt='missing' align='middle'>
 
 ### Linux  
 0. Install QGIS  

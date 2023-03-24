@@ -29,7 +29,12 @@
     Known used CRSs:
      - PREVINCAT : UTM 31N ETRS89
      - Chile North : PSAD56 / UTM zone 19S
-        
+
+| press both bottom right corner buttons |
+| --- |
+| <img src="img/qgis_bottom_right_corner.jpg" alt='cannot load image' > |
+
+
 #### 2. Instance Rasters:  
 - All layers must be ascii AAIGrid formatted .asc files with matching CRS, extent and resolution. _Use QGIS processing algorithm clip to polygon if they don't match!_  
 

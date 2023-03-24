@@ -1,0 +1,9 @@
+title: "My wonderful presentation"
+author: "fdobad"
+institute: "fire2a ISCI"
+aspectratio: 169
+logo: img/icon.png
+date:
+section-titles: false
+toc: true
+fontsize: 10pt

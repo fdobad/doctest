@@ -3,20 +3,26 @@
 ## The developer dialog
 
 The plugin includes a secundary dialog with the icon ![img/icon_dev.png](img/icon_dev.png); that works entagled to the main simulator dialog.  
-This dialog reads Cell2Fire's argument parser directly and exposes all of them in a tree view, enabling the following:  
-- Easy selection and modification of all simulator parameters (by selecting its checkbox and modifying its value) overriding the normal dialog options.  
+This dialog reads Cell2Fire's argument parser directly and exposes all options in a tree view, enabling the following:  
+- Easy selection and modification of all simulator parameters (enabled by its checkbox and modifying its default value) overriding the normal dialog options.  
 - A load and save button to persist the working configuration in the project's home folder by a pickle.dump file.  
 - A text display showing how the selected command line argument looks according to the user selection  
-- A checkbox enabling auto copying the selected command into the clipboard (note this is not enabled by default because has a noticeable visual refresh performance detriment)  
-- A folder selection widget to change which Cell2Fire simulator will be used
-- A way of overriding the normal Run command that creates a Instance folder with a copy of all data; this can be achieved by specifying the input and output folder, and then instead of pressing Run, press the [dev] button (nexto to kill and terminate ,on the Run tab of the normal dialog)
+- A checkbox enabling auto copying the generated command into the clipboard (not enabled by default because has a noticeable performance detriment)  
+- A folder selection widget to change where Cell2Fire simulator is located
+- A way of circumventing the normal Run process: Avoid the creation of the Instance_timestamp folder by specifying the input and output folder, and then pressing the [dev] button (in the run tab).
 
-## Main routes of experimenting
+| exploring the dev dialog |
+| --- |
+| <img src="img/dev_dialog.gif" alt='cannot load image' height=500px > |
+
+## Knowledge roadmap
 
 - pyqgis: Open the python console, use the provided `extras/qgis_sandbox.py` to test commands  
 - IPythonQgis : Install the IPython Console plugin (`pip install qtconsole` is required)  
-- qgis plugin: The easiest way to get up to speed with developing QGIS plugins is using the 'Plugin Builder' plugin and build a template.  
-- cell2fire: Run the included examples, visit https://github.com/fire2a 
+- qgis plugin code: The easiest way to get up to speed with developing QGIS plugins is using the 'Plugin Builder' plugin and build a dialog template  
+- qgis plugin ui: Qt Designer comes installed with qgis components  
+- cell2fire: Run the included examples, visit https://github.com/fire2a  
+Check all the references links at the [end](## Required).
 
 ## Clone instead of installing
 The plugin and the simulator are developed in different repos so cloning both repos with one as a submodule is suggested  
@@ -72,6 +78,7 @@ Mostly when adding components in QtDesigner their object name is assigned `class
 | radioButton	|	QRadioButton |
 | spinBox	|	QSpingBox |
 | doubleSpinBox	|	QDoubleSpingBox |
+| checkBox | QCheckBox |
 
 1.2 Suffix, `destName` is the same used in `ParseInputs.py` by the `argparse` object:
 
@@ -79,14 +86,18 @@ Mostly when adding components in QtDesigner their object name is assigned `class
 | --- | --- |
 | ROS_CV	|	ROS_CV |
 
-1.3 The results is that the ui values can be easily retrieved. For example for double|spinBoxes (example: doubleSpinBox_ROS_CV):
-
+1.3 The results is that the ui values can be easily retrieved. For example:
+```
         args.update( { o.objectName()[ o.objectName().index('_')+1: ]: o.value() 
             for o in self.dlg.findChildren( (QDoubleSpinBox, QSpinBox), 
                                         options= Qt.FindChildrenRecursively)})
+        args.update( { o.objectName()[ len('checkBox_'): ]: o.isChecked()
+            for o in self.dlg.findChildren( QCheckBox,
+                                        options= Qt.FindChildrenRecursively) if o.isChecked()})
 
+```
 1.4 RadioButton Groups share the same startin suffix name, then camel Uppercase distinctions:  
-
+```
 	radioButton_weatherFile, 
 	radioButton_weatherFolder, 
 	radioButton_weatherRandom, 
@@ -95,7 +106,7 @@ Mostly when adding components in QtDesigner their object name is assigned `class
 	radioButton_ignitionRandom, 
 	radioButton_ignitionPoints, 
 	radioButton_ignitionProbMap
-
+```
 ## 2. adding new resources
 ### compile resources if new icons added
 ```

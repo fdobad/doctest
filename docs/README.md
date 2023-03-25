@@ -87,3 +87,4 @@ Now you have a new icon on the plugin toolbar and a new plugin menu.
 - Directories or folders with spaces won't work
 - Don't close the current project with the dialogs opened  
 - Don't try opening the results directory while the simulation is running, specially -after the simulation- while postprocessing statistics
+- Windows version fails around 3564288 cells, a rule of thumb for a cup-of-coffee length run is less than 1000x1000 raster with 100 simulations.

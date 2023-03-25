@@ -98,6 +98,7 @@ When pressing 'Run' the following phases are executed:
             
 ### Detailed instance setup  
 #### Landscape  
+<img src="img/dialog_landscape.jpg" alt='cannot load image' height=400px >  
 The first tab of the dialog, provides layer combo boxes with all available layers added to the project (not files in the project folder!), for selecting:
     - 'Surface fuel model SB'  
     - 'Elevation'  
@@ -115,13 +116,15 @@ Also, on the first opening of the dialog, the plugin will try to match the avail
         - 'Canopy Cover Fraction' : '^ccf'  
 
 #### Ignition  
-The second tab of the dialog, sets the ignition model options for the simulation. Its main setting is the `Number of simulations to run` if set to one only one simulation will be run and the isochrones will be returned; else various simulations will be ran and the probability heat map will be calculated.  
+<img src="img/dialog_ignition.jpg" alt='cannot load image' height=400px >  
+The second tab of the dialog, sets the ignition model options for the simulation. Its main setting is the `Number of simulations to run` if set to one only _one simulation will be run and the isochrones will be returned_; else _various simulations will be ran and the probability heat map will be calculated_.  
 The ignition point can be setup as:  
     - Picked at random, drawing from a uniform probability distribution  
     - Picked at random using a spatial probability distribution raster layer (each cell with values between 0 to 1)  
     - Set by a single point from a vector layer (can be of any type GeoPackage, Shapefile, SpatiaLite or temporary scratch layer). This last option additionally has the 'adjacency radius' that enables igniting many fires in a delimited area.  
 
 #### Weather  
+<img src="img/dialog_weather.jpg" alt='cannot load image' height=400px >  
 The third tab of the dialog, enables selecting the weather for the simulation.  
 Its main setting is the weather file type provided by selecting its radio button:  
     - Constant: enables the creation 'on the fly' of a weather file; selecting the wind speed, direction and lenght (by number of rows=hrs) of the created file  
@@ -129,21 +132,41 @@ Its main setting is the weather file type provided by selecting its radio button
     - Scenario folder: provides a folder selector. Can be anywhere but must contain sequentialy numerated Weather1..N.csv files, header consistency is not checked at this time. The folder is copied as is.  
 
 Additional option are:  
-    - The Coeficient of variation for (normal distribution) Rate of Fire Spread: That emulates wind Gusts (example 0.3)  
-    - Surface Moisture Content Scenario: a integer number between 1 and 4, default 3  
-    - Foliar Moisture Content Percentage: a integer number between 0 200, default 100  
+    - The Coeficient of variation for (normal distribution) Rate of Fire Spread: That emulates wind Gusts (a good setting is 0.34)  _The higher the unpredictable the fire direction behavior_  
+    - Surface Moisture Content Scenario: a integer number between 1 and 4, default 3. _The lower the drier or more burn_  
+    - Foliar Moisture Content Percentage: a integer number between 0 200, default 100. _The lower the drier or more burn_  
+
+#### Optional Rules
+<img src="img/dialog_optionalRules.jpg" alt='cannot load image' height=400px >  
+This dialog is at the end because it can be avoided altogether but provides several performance critical options:  
+- a simulation stopping rule: check description in the screenshot  
+- a CPU hog rule : defaults to all available except one (one thread shared by qgis and the python calling thread, the rest used by the simulator), so if you want a nice background simulation while you keep working on other stuff without blocking your PC, lower it down (of course the simulation will take more time).  
+- several indicators: these sometimes take longer to calculate than the simulation itself. For the Crown options make sure you have at least one Canopy layer to make sense.  
     
 #### Run  
+<img src="img/dialog_run.jpg" alt='cannot load image' height=400px >  
 This tab enables running the cell2fire simulator, showing its "live" output on the text area provided by the dialog. Providing:  
     - 'Run' : starts the process  
     - 'Terminate' and 'Kill' : two level of priority for aborting the process while it runs.  
+    - '[dev]' advanced run that can override the creation of the Instance_timestamp folder, used in conjunction  
+
 A typical run outpus:
-```
+    ```
+    Starting run process --nthreads 7 ... # this is the python calling argument
+    workdir # this is where te c++ simulator is located
+    State changed: Starting
+    State changed: Running
+    Started
+    Generating Data.csv File...
+    Calling Cell2Fire Simulator
+    End of Cell2Fire
+    Calculating statistics...
+    ```  
+This is the simulation log, if you want the full log including the plugin, use the log panel.  
+It is normal for small number of simulations (<100) that the time spent in Cell2Fire can be even less than the postprocessing!  
 
-
-```
-It is normal for small number of simulations (<100) that the time spent in Cell2Fire can be even less than the postprocessing!
-
-# Known Bugs 
-1. Closing the project with the dialog open crashes the plugin!
-
+## Known issues  
+- Directories or folders with spaces won't work
+- Don't close the current project with the dialogs opened  
+- Don't try opening the results directory while the simulation is running, specially -after the simulation- while postprocessing statistics
+- Windows version fails around 3564288 cells, a rule of thumb for a cup-of-coffee length run is less than 1000x1000 raster with 100 simulations.

@@ -55,7 +55,7 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
     Locate it with `nice find / -readable -type d -name eigen3 2>/dev/null`  
     Then edit `makefile` accordingly & try again.  
 
-5. [Enable the plugin inside QGIS](#Activate)
+5. [Enable the plugin inside QGIS](#activate)
 
 ### Activate
 1. QGIS Menu > Plugins > Manage and Install Plugins > All  

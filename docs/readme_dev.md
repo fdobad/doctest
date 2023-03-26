@@ -22,7 +22,7 @@ This dialog reads Cell2Fire's argument parser directly and exposes all options i
 - qgis plugin code: The easiest way to get up to speed with developing QGIS plugins is using the 'Plugin Builder' plugin and build a dialog template  
 - qgis plugin ui: Qt Designer comes installed with qgis components  
 - cell2fire: Run the included examples, visit https://github.com/fire2a  
-Check all the references links at the [end](## Required).
+Check all the references links at the [end](#required).
 
 ## Clone instead of installing
 The plugin and the simulator are developed in different repos so cloning both repos with one as a submodule is suggested  

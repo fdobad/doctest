@@ -73,7 +73,7 @@ python3 wnd2Weathercsv 40_10032007.wnd
 #### 1. Run the Fire2am dialog window by:  
 1.1 Clicking on the fire2am icon ![icon](img/icon.png), on the Plugins Toolbar  
 1.2 `Menu > Plugins > Fire Simulator Analytics Management > setup and run a forest fire simulation`  
-        The other menu item is for advanced tinkering of setup of parameters, not documented!  
+        The other menu item is for advanced tinkering of setup of parameters, the [developer dialog](readme_dev.md).  
 
 #### 2. The dialog will appear, its layout in tabs:  
 2.1 Represents the workflow phases:  
@@ -148,9 +148,10 @@ This dialog is at the end because it can be avoided altogether but provides seve
 This tab enables running the cell2fire simulator, showing its "live" output on the text area provided by the dialog. Providing:  
     - 'Run' : starts the process  
     - 'Terminate' and 'Kill' : two level of priority for aborting the process while it runs.  
-    - '[dev]' advanced run that can override the creation of the Instance_timestamp folder, used in conjunction  
+    - '[dev]' advanced run that can override the creation of the Instance_timestamp folder, used in conjunction with the [developer dialog](readme_dev.md)
 
-A typical run outpus:
+A typical run outpus:  
+
     ```
     Starting run process --nthreads 7 ... # this is the python calling argument
     workdir # this is where te c++ simulator is located
@@ -162,6 +163,7 @@ A typical run outpus:
     End of Cell2Fire
     Calculating statistics...
     ```  
+
 This is the simulation log, if you want the full log including the plugin, use the log panel.  
 It is normal for small number of simulations (<100) that the time spent in Cell2Fire can be even less than the postprocessing!  
 

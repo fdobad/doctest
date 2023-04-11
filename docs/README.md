@@ -71,14 +71,18 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 3. click 'Install Plugin'  
 Now you have a new icon on the plugin toolbar and a new plugin menu.  
 
+| activation |
+| --- |
+|<img src="img/qgis_activate_plugin.gif"  alt='cannot load image' height=400px >|
+
 
 ## Broadest Usage Overview
 0. Open & save a qgis project  
 1. At least have a fuel raster layer in ascii AAIGrid format, according to Scott & Burgan fuels [definition](spain_lookup_table.csv)  
 2. Set project & layers CRS  
 3. Open the dialog, setup the layers, ignitions, weather on each tab. Click Run!  
-4. Wait for the simulation & postprocessing. 
-5. Main results will be added as a layer, the rest will be stored into outputs.gpkg  
+4. Wait for the simulation (& postprocessing, although this is done on the background)
+5. Main results will be added as a layer (also a folder to reproduce and store all results is made)
 
 ## Screenshot  
 ![panel_screenshot](img/panel_screenshot.png)  
@@ -94,8 +98,10 @@ Now you have a new icon on the plugin toolbar and a new plugin menu.
 ## Known issues  
 - Directories or folders with spaces won't work
 - Don't close the current project with the dialogs opened  
-- Don't try opening the results directory while the simulation is running, specially -after the simulation- while postprocessing statistics
-- Windows version fails around 3564288 cells, a rule of thumb for a cup-of-coffee length run is less than 1000x1000 raster with 100 simulations.
+- Don't try opening the results directory or geopackage databases (.gpkg) while the simulation is running or while postprocessing  
+- Windows version fails around 3564288 cells  
+
+A cup-of-coffee run length is less than 1000x1000 raster with 100 simulations (the load can be adjusted via number of threads on optional rules tab) 
 
 #### Keep on reading:
 - [User](readme_user.md)![icon](img/icon.png)

@@ -24,13 +24,16 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
     - 'Run anyway'
 4. [Install the plugin inside QGIS](#activate)
 
-| clicking installer_windows.bat |
-| --- |
-| <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
 | select package dialog : pip |
+| --- |
 |<img src="img/win_install_pip.jpg"  alt='cannot load image' height=300px >|
 | select package dialog : qgis desktop |
 |<img src="img/win_install_qgisdesktop.jpg"  alt='cannot load image' height=300px >|
+| extracting zip, clicking installer_windows.bat, avoiding useless 'windows protected your pc' dialog |
+| <img src="img/extract_install.gif" alt='cannot load image' height=400px > |
+| 2nd time doesn't complain, if something fails run installer_debug.bat and let us know what happened |
+| <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
+
 
 ### Linux  
 0. Install QGIS  
@@ -55,7 +58,12 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
     Locate it with `nice find / -readable -type d -name eigen3 2>/dev/null`  
     Then edit `makefile` accordingly & try again.  
 
-5. [Enable the plugin inside QGIS](#activate)
+5. [Enable the plugin inside QGIS](#activate)  
+
+| 6. Subscribe to get the latest releases |
+| --- |
+|<img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >|
+
 
 ### Activate
 1. QGIS Menu > Plugins > Manage and Install Plugins > All  
@@ -64,7 +72,7 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 Now you have a new icon on the plugin toolbar and a new plugin menu.  
 
 
-## Usage Overview
+## Broadest Usage Overview
 0. Open & save a qgis project  
 1. At least have a fuel raster layer in ascii AAIGrid format, according to Scott & Burgan fuels [definition](spain_lookup_table.csv)  
 2. Set project & layers CRS  
@@ -88,3 +96,7 @@ Now you have a new icon on the plugin toolbar and a new plugin menu.
 - Don't close the current project with the dialogs opened  
 - Don't try opening the results directory while the simulation is running, specially -after the simulation- while postprocessing statistics
 - Windows version fails around 3564288 cells, a rule of thumb for a cup-of-coffee length run is less than 1000x1000 raster with 100 simulations.
+
+#### Keep on reading:
+- [User](readme_user.md)![icon](img/icon.png)
+- [Developer](readme_dev.md)![icon](img/icon_dev.png)

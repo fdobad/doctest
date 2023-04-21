@@ -10,7 +10,7 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 
 With the bare minumiun input being a fuel and elevation layer. Other spatial inputs can include canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
 
-Can provide several outputs, such as Fire scars: starting point, animated isochrones, burn probability maps. Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
+Provides several outputs, such as Fire scars: starting point, animated isochrones, burn probability maps. Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
 
 [Install](Installation) then, choose your guide:
 - [User](readme_user.md)![icon](img/icon.png)
@@ -80,10 +80,6 @@ If you don't want to reinstall QGIS and understood the [overview](Installation),
 
 5. [Enable the plugin inside QGIS](#activate)  
 
-## Like and subscribe to get the latest releases
-<img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >
-
-
 ## Activate
 1. QGIS Menu > Plugins > Manage and Install Plugins > All  
 2. type 'fire', select 'Fire Simulator Analytics Management'  
@@ -95,6 +91,9 @@ Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new pl
 |<img src="img/qgis_activate_plugin.gif"  alt='cannot load image' height=400px >|
 
 Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
+
+## Like and subscribe to get notified of new releases
+<img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >
 
 # Broadest Usage Overview  
 0. Open & save a qgis project  

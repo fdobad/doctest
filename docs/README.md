@@ -8,11 +8,12 @@ Choose your guide:
 This softwares enables you to simulate thousand of forest fires on a landscape using QGIS. At least you'll need a fuel and elevation layer.
 
 ## Installation
+### 1. Overview (don't do this)
 - pip install python required packages
 - move the source folder to QGIS's plugins directory
 - activate inside QGIS
 
-### Windows
+### 2. Windows steps
 0. Install QGIS, using OSGeo4W net installer  
     - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
     - Use default options for everything but
@@ -35,7 +36,7 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 | <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
 
 
-### Linux  
+### 3. Linux steps  
 0. Install QGIS  
     - Debian LTR version: Super Key > type 'QGIS' > Click Install
     - Others: https://qgis.org/en/site/forusers/alldownloads.html#linux
@@ -60,9 +61,8 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 
 5. [Enable the plugin inside QGIS](#activate)  
 
-| 6. Subscribe to get the latest releases |
-| --- |
-|<img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >|
+### Like and subscribe to get the latest releases
+<img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >
 
 
 ### Activate

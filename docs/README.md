@@ -13,7 +13,8 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 - move the source folder to QGIS's plugins directory
 - activate inside QGIS
 
-### 2. Windows steps
+### 2. Windows automatic
+NOTE: If you already installed QGIS you can do the steps of the overview [manually](windows manual)
 0. Install QGIS, using OSGeo4W net installer  
     - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
     - Use default options for everything but
@@ -35,6 +36,11 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 | 2nd time doesn't complain, if something fails run installer_debug.bat and let us know what happened |
 | <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
 
+### Windows manual 
+- launch osgeo installer > install pip component
+- launch osgeo console > run pip install -r C:\path\to\fire2am\requirements.txt
+- move the source folder into QGIS's plugins directory %APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am
+- [Enable the plugin inside QGIS](#activate)
 
 ### 3. Linux steps  
 0. Install QGIS  
@@ -69,20 +75,24 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
 1. QGIS Menu > Plugins > Manage and Install Plugins > All  
 2. type 'fire', select 'Fire Simulator Analytics Management'  
 3. click 'Install Plugin'  
-Now you have a new icon on the plugin toolbar and a new plugin menu.  
+Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
 
 | activation |
 | --- |
 |<img src="img/qgis_activate_plugin.gif"  alt='cannot load image' height=400px >|
 
+Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
 
 ## Broadest Usage Overview
 0. Open & save a qgis project  
 1. At least have a fuel raster layer in ascii AAIGrid format, according to Scott & Burgan fuels [definition](spain_lookup_table.csv)  
-2. Set project & layers CRS  
-3. Open the dialog, setup the layers, ignitions, weather on each tab. Click Run!  
+2. Set project & layers CRS (Coordinate Reference System)  
+3. Open the dialog (the plugin icon), setup the layers, ignitions, weather on each tab. Click Run!  
 4. Wait for the simulation (& postprocessing, although this is done on the background)
-5. Main results will be added as a layer (also a folder to reproduce and store all results is made)
+5. Main results will be added as a layer (also a folder to reproduce and store all results is made)  
+
+There are sample instances on the plugin folder `fire2am/C2FSB/data/`
+If you are unsure of this steps, keep reading and go to the [user manual](readme_user.md) 
 
 ## Screenshot  
 ![panel_screenshot](img/panel_screenshot.png)  

@@ -18,7 +18,7 @@ This softwares enables you to simulate thousand of forest fires on a landscape u
     - Use default options for everything but
     - Select packages to install "QGIS desktop" & "pip"
 1. At least open and close QGIS once
-2. Download & un7zip a release (from the right tab) into `fire2am` (default suggested name)  
+2. Download & un7zip a release (from the [releases](https://github.com/fdobad/fire2am-qgis-plugin/releases) right tab) into `fire2am` (default suggested name)  
 3. Inside, double click on `installer_windows.bat`
     - 'More info' on the warning dialog
     - 'Run anyway'

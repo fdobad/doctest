@@ -1,11 +1,22 @@
-# Cell 2 Fire QGIS plugin
+        Fire Advanced Analytics & Management
+        
+                fire2am a QGIS plugin
+                
+            by fire2a.com research centre
 
-This repo contains a [QGIS](https://qgis.org) [plugin](https://plugins.qgis.org/) for graphically interfacing with Cell2Fire [SB](https://github.com/fire2a/C2FSB) simulator.  
-Choose your guide:
+This repo contains a [QGIS](https://qgis.org) [plugin](https://plugins.qgis.org/) for graphically interfacing with Cell2Fire [SB](https://github.com/fire2a/C2FSB) simulator, test cases and a few extras.  
+
+This softwares enables you to simulate thousand of forest fires on a landscape using QGIS. 
+
+With the bare minumiun input being a fuel and elevation layer. Other spatial inputs can include canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
+
+Can provide several outputs, such as Fire scars: starting point, animated isochrones, burn probability maps. Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
+
+[Install](Installation) then, choose your guide:
 - [User](readme_user.md)![icon](img/icon.png)
 - [Developer](readme_dev.md)![icon](img/icon_dev.png)
 
-This softwares enables you to simulate thousand of forest fires on a landscape using QGIS. At least you'll need a fuel and elevation layer.
+
 
 ## Installation
 ### 1. Overview (don't do this)

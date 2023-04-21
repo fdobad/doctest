@@ -16,6 +16,8 @@ Provides several outputs, such as Fire scars: starting point, animated isochrone
 - [User](readme_user.md)![icon](img/icon.png)
 - [Expert](readme_dev.md)![icon](img/icon_dev.png)
 
+_Most sections have a .gif animation at the end summarizing it._
+
 # Installation
 Overview (keep reading don't do this right away):
 - pip install python required packages (on QGIS python environment)
@@ -23,10 +25,11 @@ Overview (keep reading don't do this right away):
 - activate inside QGIS
 
 Choose your platform:
-- [Windows](A.Windows)
-- [Linux or MacOS](B.Linux)
+- [Linux](Linux)🗽
+- [Windows](Windows)💩  
+- [MacOS](Linux)🤡
 
-## A.Windows
+## Windows
 If you don't want to reinstall QGIS and understood the [overview](Installation), you can [manually install](Windows_manual).  
  1. Install QGIS, using OSGeo4W net installer  
     - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
@@ -50,11 +53,13 @@ If you don't want to reinstall QGIS and understood the [overview](Installation),
 
 ### Windows_manual 
 - launch osgeo installer > install pip component
-- launch osgeo console > pip install --upgrade pip setuptools wheel & pip install -r C:\path\to\fire2am\requirements.txt
-- move the source folder into QGIS's plugins directory %APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am
-- [Enable the plugin inside QGIS](#activate)
+- launch osgeo console > upgrade `pip setuptools wheel`, then  `pip install -r C:\path\to\fire2am\requirements.txt`
+- move the source folder into QGIS's plugins directory `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am`
+- [Enable the plugin inside QGIS](#activate)  
 
-## B.Linux
+Take me back to [Windows💩 install instructions](Windows)
+
+## Linux
 0. Install QGIS  
     - Debian LTR version: Super Key > type 'QGIS' > Click Install
     - Others: https://qgis.org/en/site/forusers/alldownloads.html#linux
@@ -92,14 +97,14 @@ Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new pl
 
 Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
 
-## Like and subscribe to get notified of new releases
+## Like ⭐ and subscribe to get notified of new releases
 <img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >
 
 # Broadest Usage Overview  
 0. Open & save a qgis project  
 1. At least have a fuel raster layer in ascii AAIGrid format, according to Scott & Burgan fuels [definition](spain_lookup_table.csv)  
 2. Set project & layers CRS (Coordinate Reference System)  
-3. Open the dialog (the plugin icon![icon](img/icon.png)), setup the layers, ignitions, weather on each tab. Click Run!  
+3. Open the dialog (click on ![icon](img/icon.png)), setup the layers, ignitions, weather on each tab. Click Run!  
 4. Wait for the simulation (& postprocessing, although this is done on the background)  
 5. Main results will be added as layers (also a folder to reproduce and store all results is made)  
 
@@ -109,13 +114,14 @@ Keep reading and then make sure to check the [user guide](readme_user.md)
 # Screenshot  
 ![panel_screenshot](img/panel_screenshot.png)  
 
-0. On the Plugin Menu this plugin is shown selected  
-1. Its icon is also available on the Plugin Toolbar ![icon](img/icon.png)  
-2. Along other very useful plugins:  
-    - Plugin Builder : For developers wanting a minimal working plugin template  
-    - Plugin Reloader : If the provided Restore Defaults button doesn't work, use this  
-    - Time Manager : For earlier versions of QGIS (<3.2) this is needed for animating the fire isochrones (merged fire evolution layer)  
-    - IPython QGIS Console : A introspection capable ipython session based on qtconsole  
+0. On the Plugin Menu this plugin dialog launcher is shown selected  
+1. Its also available on the Plugin Toolbar ![icon](img/icon.png)  
+2. Along other very useful plugins -that can be installed directly inside QGIS:  
+    - [Plugin Builder](https://plugins.qgis.org/plugins/pluginbuilder3/#plugin-details) : For developers wanting a minimal working plugin template  
+    - [Plugin Reloader](https://plugins.qgis.org/plugins/plugin_reloader/#plugin-details) : If the plugin provided `Restore Defaults` button doesn't work hard enough, use this  
+    - [Time Manager](https://plugins.qgis.org/plugins/timemanager/#plugin-about) : For earlier versions of QGIS (<3.2) this is needed for animating the fire isochrones (merged fire scars evolution layer)  
+    - [IPython QGIS Console](http://www.itopen.it/qgis-and-ipython-the-definitive-interactive-console/) : A introspection capable ipython session based on (pip requires) qtconsole  
+
 
 # Known issues  
 - Directories or folders with spaces won't work
@@ -123,7 +129,7 @@ Keep reading and then make sure to check the [user guide](readme_user.md)
 - Don't try opening the results directory or geopackage databases (.gpkg) while the simulation is running or while postprocessing  
 - Windows version fails around 3564288 cells  
 
-A cup-of-coffee run length is less than 1000x1000 raster with 100 simulations (the load can be adjusted via number of threads on optional rules tab) 
+A cup-of-coffee run length is less than 1000x1000 raster with 100 simulations (the CPU load can be adjusted via number of threads on `Optional Rules` tab) 
 
 # Keep on reading
 - [User guide](readme_user.md)![icon](img/icon.png)

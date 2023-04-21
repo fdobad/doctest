@@ -6,13 +6,13 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-This softwares enables you to simulate thousand of forest fires on a landscape using [QGIS](https://qgis.org). 
+The softwares enables you to simulate thousand of forest fires on any landscape inside [QGIS](https://qgis.org). 
 
 With the bare minumiun input being a fuel and elevation layer. Other spatial inputs can include canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
 
-Provides several outputs, such as Fire scars: starting point, animated isochrones, burn probability maps. Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
+Provides several outputs, such as fire scars: starting points, animated isochrones, probability maps. Also Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
 
-[Install](Installation) then, choose your guide:
+[Install](#installation) then, choose your guide:
 - [User](readme_user.md)![icon](img/icon.png)
 - [Expert](readme_dev.md)![icon](img/icon_dev.png)
 
@@ -20,26 +20,27 @@ _Most sections have a .gif animation at the end summarizing it._
 
 # Installation
 Overview (keep reading don't do this right away):
+- Ask the fire2a team for access to the repository
 - pip install python required packages (on QGIS python environment)
-- move the source folder to QGIS's plugins directory
-- activate inside QGIS
+- Move the source folder to QGIS's plugins directory
+- Activate inside QGIS
 
 Choose your platform:
-- [Linux](Linux)🗽
-- [Windows](Windows)💩  
-- [MacOS](Linux)🤡
+- [Linux](#linux)🗽
+- [Windows](#windows)💩  
+- [MacOS](#linux)🤡
 
 ## Windows
-If you don't want to reinstall QGIS and understood the [overview](Installation), you can [manually install](Windows_manual).  
+If you don't want to reinstall QGIS and understood the [overview](#installation), you can [manually install](#windows_manual).  
  1. Install QGIS, using OSGeo4W net installer  
     - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
     - Use default options for everything but
     - Select packages to install "QGIS desktop" & "pip"
  2. At least open and close QGIS once
  3. Download & un7zip the latest [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) into `fire2am` (default suggested name)  
- 4. Inside `fire2am`, double click on `installer_windows.bat`, a command prompt will launch and warning dialog will rise.
+ 5. Inside `fire2am`, double click on `installer_windows.bat`, a command prompt will launch and warning dialog will rise.
     - Click on 'More info' > 'Run anyway' on the warning dialog
- 5. [Enable the plugin inside QGIS](#activate)
+ 6. [Enable the plugin inside QGIS](#activate)
 
 | select package dialog : pip |
 | --- |
@@ -57,7 +58,7 @@ If you don't want to reinstall QGIS and understood the [overview](Installation),
 - move the source folder into QGIS's plugins directory `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am`
 - [Enable the plugin inside QGIS](#activate)  
 
-Take me back to [Windows💩 install instructions](Windows)
+Take me back to [Windows💩 install instructions](#windows)
 
 ## Linux
 0. Install QGIS  
@@ -102,7 +103,7 @@ Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new pl
 
 # Broadest Usage Overview  
 0. Open & save a qgis project  
-1. At least have a fuel raster layer in ascii AAIGrid format, according to Scott & Burgan fuels [definition](spain_lookup_table.csv)  
+1. At least have a fuel raster layer in ascii AAIGrid format, according to Scott & Burgan [fuels definition](spain_lookup_table.csv)  
 2. Set project & layers CRS (Coordinate Reference System)  
 3. Open the dialog (click on ![icon](img/icon.png)), setup the layers, ignitions, weather on each tab. Click Run!  
 4. Wait for the simulation (& postprocessing, although this is done on the background)  
@@ -129,7 +130,7 @@ Keep reading and then make sure to check the [user guide](readme_user.md)
 - Don't try opening the results directory or geopackage databases (.gpkg) while the simulation is running or while postprocessing  
 - Windows version fails around 3564288 cells  
 
-A cup-of-coffee run length is less than 1000x1000 raster with 100 simulations (the CPU load can be adjusted via number of threads on `Optional Rules` tab) 
+A cup-of-coffee run length is less than 1000x1000 raster with 100 simulations (the CPU load can be adjusted via number of threads on the `Optional Rules` tab) 
 
 # Keep on reading
 - [User guide](readme_user.md)![icon](img/icon.png)

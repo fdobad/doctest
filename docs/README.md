@@ -10,6 +10,8 @@ The softwares enables you to simulate thousand of forest fires on any landscape 
 
 With the bare minumiun input being a fuel and elevation layer. Other spatial inputs can include canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
 
+A cup-of-coffee run length is less than 500x500 raster with 50 simulations (the CPU load can be adjusted via number of threads on the `Optional Rules` tab) 
+
 Provides several outputs, such as fire scars: starting points, animated isochrones, probability maps. Also Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
 
 [Install](#installation) then, choose your guide:
@@ -20,7 +22,7 @@ _Most sections have a .gif animation at the end summarizing it._
 
 # Installation
 Overview (keep reading don't do this right away):
-- Ask the fire2a team for access to the repository
+- Ask the fire2a team for a zip file or access to the repository
 - pip install python required packages (on QGIS python environment)
 - Move the source folder to QGIS's plugins directory
 - Activate inside QGIS
@@ -53,9 +55,14 @@ If you don't want to reinstall QGIS and understood the [overview](#installation)
 | <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
 
 ### Windows_manual 
-- launch osgeo installer > install pip component
-- launch osgeo console > upgrade `pip setuptools wheel`, then  `pip install -r C:\path\to\fire2am\requirements.txt`
-- move the source folder into QGIS's plugins directory `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am`
+- If pip is not installed, launch OsGeo4W Setup then install pip component:  
+        1. 'win' button, type 'osgeo4w setup'  
+        2. As seen on 'select package dialog : pip' image above  
+- Launch osgeo console, upgrade pip then install requirementes:  
+        1. 'win' button, type 'osgeo4w shell'  
+        2. `pip install --upgrade pip setuptools wheel`, if pip fails `python3 -m pip --upgrade pip`  
+        3. `pip install -r C:\path\to\fire2am\requirements.txt`  
+- Move the source folder into QGIS's plugins directory `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am`  
 - [Enable the plugin inside QGIS](#activate)  
 
 Take me back to [Windows💩 install instructions](#windows)
@@ -129,8 +136,6 @@ Keep reading and then make sure to check the [user guide](readme_user.md)
 - Don't close the current project with the dialogs opened  
 - Don't try opening the results directory or geopackage databases (.gpkg) while the simulation is running or while postprocessing  
 - Windows version fails around 3564288 cells  
-
-A cup-of-coffee run length is less than 1000x1000 raster with 100 simulations (the CPU load can be adjusted via number of threads on the `Optional Rules` tab) 
 
 # Keep on reading
 - [User guide](readme_user.md)![icon](img/icon.png)

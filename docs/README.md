@@ -71,6 +71,7 @@ Take me back to [Windows💩 install instructions](#windows)
 0. Install QGIS  
     - Debian LTR version: Super Key > type 'QGIS' > Click Install
     - Others: https://qgis.org/en/site/forusers/alldownloads.html#linux
+    - MacOS🤡: https://qgis.org/en/site/forusers/download.html#mac
 1. Donwload a release, unzip into the plugins folder `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am`
 2. `cd` into it  
 3. Python requirements  

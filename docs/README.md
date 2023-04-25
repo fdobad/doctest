@@ -6,15 +6,7 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-The softwares enables you to simulate thousand of forest fires on any landscape inside [QGIS](https://qgis.org). 
-
-With the bare minumiun input being a fuel and elevation layer. Other spatial inputs can include canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
-
-Provides several outputs, such as fire scars: starting points, animated isochrones, probability maps. Also Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
-
-[Install](#installation) then, choose your guide:
-- [User](readme_user.md)![icon](img/icon.png)
-- [Expert](readme_dev.md)![icon](img/icon_dev.png)
+The softwa[icon](img/icon_dev.png)
 
 _Most sections have a .gif animation at the end summarizing it._
 

@@ -114,10 +114,13 @@ When pressing 'Run' the following phases are executed:
 The first tab of the dialog, provides layer combo boxes with all available layers added to the project (distinct than files in the project folder!), for selecting:  
 
         - 'Surface fuel model SB'  
-        - 'Elevation'  
+        - 'Elevation'  (can be set to none)  
         - 'Canopy Base Height'  (can be set to none)  
         - 'Canopy Bulk Density'  (can be set to none)  
         - 'Canopy Cover Fraction'  (can be set to none)  
+
+Only fuels layer is mandatory.  
+For enabling crown fire behavior you must have at least one canopy layer. Otherwise to disable crown fire behavior make sure the canopy layers are set to none.
 
 _Again, make sure they're AAIGrid ascii formated files, they have the same CRS and extent._  
 

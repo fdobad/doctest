@@ -8,11 +8,11 @@ This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically i
 
 The softwares enables you to simulate thousand of forest fires on any landscape inside [QGIS](https://qgis.org). 
 
-With the bare minumiun input being a fuel and elevation layer. Other spatial inputs can include canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
+With the bare minumiun input being a fuel. Other spatial inputs can include an elevation layer; canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
 
-A cup-of-coffee run length is less than 500x500 raster with 50 simulations (the CPU load can be adjusted via number of threads on the `Optional Rules` tab) 
+A cup-of-coffee run length is less than 500x500 raster with 50 simulations (simulations run in parallel, the maximum number of simultaneous runs can be adjusted via number of threads on the 'Optional Rules' tab) 
 
-Provides several outputs, such as fire scars: starting points, animated isochrones, probability maps. Also Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc.
+Provides several outputs, such as 'Betweenness Centrality'; Fire scars: starting points, animated isochrones, probability maps. Also Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc. Spatial outputs are stored as geopackages and numerical statistics are shown on the 'Tables' tab.  
 
 [Install](#installation) then, choose your guide:
 - [User](readme_user.md)![icon](img/icon.png)
@@ -40,8 +40,9 @@ If you don't want to reinstall QGIS and understood the [overview](#installation)
     - Select packages to install "QGIS desktop" & "pip"
  2. At least open and close QGIS once
  3. Download & un7zip the latest [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) into `fire2am` (default suggested name)  
- 5. Inside `fire2am`, double click on `installer_windows.bat`, a command prompt will launch and warning dialog will rise.
+ 5. Inside `fire2am`, double click on `install_windows.bat`, a command prompt will launch and a warning dialog will rise.
     - Click on 'More info' > 'Run anyway' on the warning dialog
+    - If anything fails, run the `install_debug.bat` and [report back](#windows_debug).
  6. [Enable the plugin inside QGIS](#activate)
 
 | select package dialog : pip |
@@ -49,10 +50,19 @@ If you don't want to reinstall QGIS and understood the [overview](#installation)
 |<img src="img/win_install_pip.jpg"  alt='cannot load image' height=300px >|
 | select package dialog : qgis desktop |
 |<img src="img/win_install_qgisdesktop.jpg"  alt='cannot load image' height=300px >|
-| extracting zip, clicking installer_windows.bat, avoiding useless 'windows protected your pc' dialog |
+| extracting zip, clicking installer_windows.bat, avoiding 'windows protected your pc' dialog |
 | <img src="img/extract_install.gif" alt='cannot load image' height=400px > |
-| 2nd time doesn't complain, if something fails run installer_debug.bat and let us know what happened |
+| 2nd time doesn't complain. Did all outputs looked successful?  |
 | <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
+
+### Windows_debug
+If any output looks like a failure message run `installer_debug.bat` and let us now the output.  
+Copy the output from the command prompt window by:  
+        1. Selecting the text (left-click then select)  
+        2. Copy it by pressing the secondary mouse button (right button)  
+        3. Paste it into an email for the fire2a team or [create an issue](https://github.com/fdobad/fire2am-qgis-plugin/issues)  
+The installer checks only for these errors: "Qgis Environment failed", "Upgrading pip tools failed" & "Installing python packages failed".  
+The most common error is a `ModuleNotFoundError`, after [activation](#activate) meaning something silently failed installing pip packages (this will be automated on QGIS 3.8)  
 
 ### Windows_manual 
 - If pip is not installed, launch OsGeo4W Setup then install pip component:  
@@ -105,6 +115,7 @@ Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new pl
 |<img src="img/qgis_activate_plugin.gif"  alt='cannot load image' height=400px >|
 
 Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
+If it fails at this stage, it's probably a `ModuleNotFoundError` meaning something failed installing pip packages (this will be automated on QGIS 3.8)
 
 ## Like ⭐ and subscribe to get notified of new releases
 <img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >

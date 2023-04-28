@@ -115,7 +115,7 @@ Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new pl
 |<img src="img/qgis_activate_plugin.gif"  alt='cannot load image' height=400px >|
 
 Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
-If it fails at this stage, it's probably a `ModuleNotFoundError` meaning something failed installing pip packages (this will be automated on QGIS 3.8)
+If it fails at this stage, it's probably a `ModuleNotFoundError` meaning something silently failed installing pip packages (this will be automated on QGIS 3.8)
 
 ## Like ⭐ and subscribe to get notified of new releases
 <img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >

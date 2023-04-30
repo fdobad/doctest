@@ -103,15 +103,17 @@ Take me back to [Windows💩 install instructions](#windows)
     Then edit `makefile` accordingly & try again.  
 
 5. [Enable the plugin inside QGIS](#activate)  
+
 ## Forcing python requirements in QGIS console
 The last resort but very discouraged method to installing packages for the QGIS python environment, inside QGIS:  
-1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon ![python_icon](img/python-logo-only.png)  
+1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon ![pythonicon](img/python-logo-only.png)  
 2. Write the following commands:  
 ```
 import pip
 pip.main(['install', 'my-package-name'])
 ```
 Replace 'my-package-name' and repeat this line with each package from the `requirements.txt` file (inside the zipped folder or [here](https://github.com/fdobad/fire2am-qgis-plugin/blob/main/requirements.txt)), (ignore the warnings) and restart QGIS.  
+
 | force pip on python console |
 | --- |
 |<img src="img/not_recommended_install.gif"  alt='cannot load not_recommended_install' height=400px >|

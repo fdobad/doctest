@@ -66,7 +66,7 @@ The most common error is a `ModuleNotFoundError`, after [activation](#activate) 
 
 ### Windows_manual 
 - If pip is not installed, launch OsGeo4W Setup then install pip component:  
-        1. 'win' button, type 'osgeo4w setup'  
+        1. 'win' button, type 'osgeo4w-setup'  
         2. As seen on 'select package dialog : pip' image above  
 - Launch osgeo console, upgrade pip then install requirementes:  
         1. 'win' button, type 'osgeo4w shell'  

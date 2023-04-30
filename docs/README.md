@@ -103,6 +103,15 @@ Take me back to [Windows💩 install instructions](#windows)
     Then edit `makefile` accordingly & try again.  
 
 5. [Enable the plugin inside QGIS](#activate)  
+## Forcing python requirements in QGIS console
+The last resort but very discouraged method to installing packages for the QGIS python environment, inside QGIS:  
+1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon.  
+2. Write the following commands:  
+```
+import pip
+pip.main(['install', 'my-package-name'])
+```
+Replace 'my-package-name' and repeat this line with each package from the `requirements.txt` file (inside the zipped folder or [here](https://github.com/fdobad/fire2am-qgis-plugin/blob/main/requirements.txt)), (ignore the warnings) and restart QGIS.  
 
 ## Activate
 1. QGIS Menu > Plugins > Manage and Install Plugins > All  
@@ -115,7 +124,10 @@ Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new pl
 |<img src="img/qgis_activate_plugin.gif"  alt='cannot load image' height=400px >|
 
 Now you have a new icon ![icon](img/icon.png) on the plugin toolbar and a new plugin menu.  
-If it fails at this stage, it's probably a `ModuleNotFoundError` meaning something silently failed installing pip packages (this will be automated on QGIS 3.8)
+
+If it fails at this stage, it's probably a `ModuleNotFoundError` meaning something -silently- failed installing pip packages (this will be automated on QGIS 3.8).  
+Check [this section](#forcing-python-requirements-in-qgis-console) for a last resort.  
+Please report the output of `install_debug.bat` to the fire2a team first.  
 
 ## Like ⭐ and subscribe to get notified of new releases
 <img src="img/like_n_subscribe.gif"  alt='cannot load image' height=300px >

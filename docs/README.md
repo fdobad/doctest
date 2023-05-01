@@ -106,7 +106,7 @@ Take me back to [Windows💩 install instructions](#windows)
 
 ## Forcing python requirements in QGIS console
 The last resort but very discouraged method to installing packages for the QGIS python environment, inside QGIS:  
-1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon ![pythonicon](img/python-logo-only.png)  
+1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon <img src="img/python-logo-only.png"  alt='cannot load image' height=24px >  
 2. Write the following commands:  
 ```
 import pip

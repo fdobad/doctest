@@ -38,6 +38,7 @@ Most sections have a .gif animation at the end summarizing it.
 ## 2. Instance Rasters  
 - All layers must be ascii AAIGrid formatted .asc files with matching CRS, extent and resolution.  
         - _Use QGIS processing algorithm clip to polygon if they don't match!_  
+        - Follow [this guide](prepare_rasters.md) to checking and converting rasters to avoid errors and improving processing speed.
 
 - The header (first 6 lines) for asc files __must have 1 space__ between its data, i.e., `ncols_40` not `ncols____40`
     - _This happens on PREVINCAT data_

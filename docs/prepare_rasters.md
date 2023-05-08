@@ -6,7 +6,7 @@ Check the sizes by entering into the layer properties dialog: Secondary click ov
 
 | Check: Width, Height & AAIGrid Driver! |
 | --- |
-| <img src="img/layer_properties.jpg" alt='cannot load image' > |
+| <img src="img/layer_properties.jpg" alt='cannot load image' width='80%'> |
 
 - _If layer sizes are too big, the simulator will take forever._
 
@@ -16,7 +16,7 @@ But around 500x500 pixels x50 fires is a 5 minute run on a average medium tier l
 # GDAL Translate
 [GDAL translate](https://gdal.org/programs/gdal_translate.html#gdal-translate) is a tool available in QGIS [Processing Toolbox](https://docs.qgis.org/3.28/en/docs/user_manual/processing/toolbox.html) to converts raster data.
 
-- Convert to a specific raster size to match others using `-outsize`, then adjusting the header of the resulting file is needed.
+- Convert to a specific raster size to match others using `-outsize`, __then manually adjusting the header of the resulting file is needed.__
 - To convert fuels rasters, using `-r nearest` is mandatory to stay in the domain.
 
 Basically, the algorithm is configured with these 3 options:
@@ -35,34 +35,34 @@ Basically, the algorithm is configured with these 3 options:
 ```
 So for example, convert to a 1 ha resolution to explore really big areas.
 	- `-tr 100 100 -r cubicspline` for elevation
-	- `-tr 100 100 -r nearest` for fuel model
+	- `-tr 100 100 -r nearest` for fuel model  
+	
+Do the following:
+ 1. Click on the cog  
+ 2. Write `trans` in the Processing Toolbox search box  
+ 3. Select `GDAL > Translate (convert format)`  
+ 4. Select the input layer  
+ 5. If closed, open the Advanced Parameters section  
+ 6. Write into the Additional command-line parameters input:  
+ ```
+ -r nearest 		# For fuel layers
+ -tr 100 100		# To scale resolution
+ -outsize W H 		# To match to other layer
+ ```
+ 7. Select the output file, must end in `.asc`  
+ 8. Click Run  
+ 9. Finally, check the generated header in a text editor, make sure `cellsize` is used instead of `dx dy`
 
-The steps are the following
 
-| Steps | Where |
-| --- | --- |
-| 1. Click on the cog  
-2. Write `trans` in the Processing Toolbox search box  
-3. Select `GDAL > Translate (convert format)`  
-4. Select the input layer  
-5. If closed, open the Advanced Parameters section  
-6. Write into the Additional command-line parameters input:  
-```
--r nearest 		# For fuel layers
--tr 100 100		# To scale resolution
--outsize W H 		# To match to other layer
-```
-7. Select the output file, must end in `.asc`  
-8. Click Run  
-| <img src="img/gdalTranslate_in_QGIS.jpg" alt='cannot load image' > |
-
-9. Check the generated header in a text editor, make sure `cellsize` is used instead of `dx dy`
 
 | Summary |
 | --- |
-| <img src="img/raster_translate.gif" alt='cannot load image' > |
+| <img src="img/gdalTranslate_in_QGIS.jpg" alt='cannot load image' width='80%'>  > |
+| <img src="img/raster_translate.gif" alt='cannot load image'  width='80%'> > |
 | Change the header (if you used `outsize`)|
-| <img src="img/raster_translate_ascHeaderMod.gif" alt='cannot load image' > |
+| <img src="img/raster_translate_ascHeaderMod.gif" alt='cannot load image'  width='80%'> > |
+
+_Don't forget checking to changing the headers!!_
 
 # Other solutions
 ## Make a new study area

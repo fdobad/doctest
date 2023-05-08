@@ -87,6 +87,6 @@ Using the Processing Toolbox:
 
 ## Clip all rasters by the smallest one
 Using the Processing Toolbox:
-	1. Vector -> Research Tools -> Extract Layer Extent
-	2. Raster -> Extraction -> Clip raster by extent
+	1. Vector -> Research Tools -> Extract Layer Extent  
+	2. Raster -> Extraction -> Clip raster by extent  
 

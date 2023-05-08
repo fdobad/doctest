@@ -82,11 +82,11 @@ https://docs.qgis.org/3.28/en/docs/training_manual/create_vector_data/create_new
 https://mapscaping.com/how-to-create-a-polygon-qgis/
 
 ### 2. Clip all layers to the polygon
-Using the Processing Toolbox:
-	Gdal -> Raster Extraction -> Clip raster by mask layer
+Using the Processing Toolbox:  
+	Gdal -> Raster Extraction -> Clip raster by mask layer  
 
 ## Clip all rasters by the smallest one
-Using the Processing Toolbox:
+Using the Processing Toolbox:  
 	1. Vector -> Research Tools -> Extract Layer Extent  
 	2. Raster -> Extraction -> Clip raster by extent  
 

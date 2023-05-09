@@ -8,7 +8,7 @@
 
 Check [Getting the software](README.md#installation) first.  
 Sample instances are included in the plugin folder `fire2am/C2FSB/data/`.  
-Most sections have a .gif animation at the end summarizing it.  
+_Most sections have a .gif animation at the end summarizing it._  
 
 # Files Preparation
 ## 0. Formats

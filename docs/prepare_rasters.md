@@ -1,3 +1,10 @@
+        Fire Advanced Analytics & Management
+        
+                 fire2am QGIS plugin
+                
+            by fire2a.com research centre
+	    
+_This section has a .gifs animations at the end summarizing it._
 # Matching and scaling rasters in QGIS
 
 - _If layer sizes don´t match, the simulator won´t run._

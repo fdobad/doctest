@@ -1,1 +1,11 @@
-/home/fdo/dev/fire2am/requirements.txt
+numpy
+pandas
+matplotlib
+seaborn
+tqdm
+Pillow
+networkx
+rasterio
+scipy
+deap
+pyperclip

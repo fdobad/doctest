@@ -6,31 +6,41 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-The softwares enables you to simulate thousand of forest fires on any landscape inside [QGIS](https://qgis.org). 
+The softwares enables you to simulate thousand of forest fires on any landscape, providede that you have a fuel raster with Scott and Burgan fuel types, inside [QGIS](https://qgis.org). 
 
-With the bare minumiun input being a fuel. Other spatial inputs can include an elevation layer; canopy base height, bulk density or fraction cover; ignition points, weather scenarios, moisture content, etc.
+With the bare minumiun input being forest fuels. Other spatial inputs can include an elevation layer; canopy base height, bulk density or fraction cover; ignition probabilities, weather scenarios, moisture content, etc.
 
 A cup-of-coffee run length is less than 500x500 raster with 50 simulations (simulations run in parallel, the maximum number of simultaneous runs can be adjusted via number of threads on the 'Optional Rules' tab) 
 
-Provides several outputs, such as 'Betweenness Centrality'; Fire scars: starting points, animated isochrones, probability maps. Also Crown fire scar and fuel consumption. Flame lenght, Byram intensity, Hit Rate of Spread, etc. Spatial outputs are stored as geopackages and numerical statistics are shown on the 'Tables' tab.  
+Depending on the number of simulations performend, this  plug in provides several outputs: 
+- If just one simulation is performed you can get: 
+    1. The Fire perimeter
+    2. The ignition point
+    3. Animated isochrones
+    4. Flame lenght, Byram Intensity, Rate of spread, etc. for each burned cell
+- If mode than one simulation is performed you can get
+    1. a Burn Probabilitie Map
+    2. a Betweenness Centrality Map
+    3. Maps of the Averages Flame lenght, Byram Intensity, Rate of spread, etc.
+Spatial outputs are stored as geopackages and numerical statistics are shown on the 'Tables' tab.  
 
 [Install](#installation) then, choose your guide:
-- [User](readme_user.md)![icon](img/icon.png)
-- [Expert](readme_dev.md)![icon](img/icon_dev.png)
+- [User ](readme_user.md)![icon](img/icon.png)
+- [Expert ](readme_dev.md)![icon](img/icon_dev.png)
 
 _Most sections have a .gif animation at the end summarizing it._
 
 # Installation
 Overview (keep reading don't do this right away):
 - Ask the fire2a team for a zip file or access to the repository
-- pip install python required packages (on QGIS python environment)
-- Move the source folder to QGIS's plugins directory
+- pip install python required packages (on QGIS python environment). See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for information about QGIS environment. 
+- Move the source folder to QGIS's plugins directory. See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for more information about this step. 
 - Activate inside QGIS
 
 Choose your platform:
-- [Linux](#linux)🗽
-- [Windows](#windows)💩  
-- [MacOS](#linux)🤡
+- [Linux ](#linux)🗽
+- [Windows ](#windows)💩  
+- [MacOS ](#linux)🤡
 
 ## Windows
 If you don't want to reinstall QGIS and understood the [overview](#installation), you can [manually install](#windows_manual).  

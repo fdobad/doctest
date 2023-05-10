@@ -1,0 +1,1 @@
+/home/fdo/dev/fire2am/requirements.txt

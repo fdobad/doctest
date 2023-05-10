@@ -143,7 +143,7 @@ The last resort but very discouraged method to installing packages for the QGIS 
 import pip
 pip.main(['install', 'my-package-name'])
 ```
-Replace 'my-package-name' and repeat this line with each package from the `requirements.txt` file (inside the zipped folder or [here](https://github.com/fdobad/fire2am-qgis-plugin/blob/main/requirements.txt)), (ignore the warnings) and restart QGIS.  
+Replace 'my-package-name' and repeat this line with each package from the `requirements.txt` file (inside the zipped folder, [here](https://github.com/fdobad/fire2am-qgis-plugin/blob/main/requirements.txt) or [here](#requirements.txt)), (ignore the warnings) and restart QGIS.  
 
 | force pip on python console |
 | --- |

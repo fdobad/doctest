@@ -26,9 +26,9 @@ Check all the references links at the [end](#required).
 
 ## Clone instead of installing
 The plugin and the simulator are developed in different repos so cloning both repos with one as a submodule is suggested  
-
+    
     # 0. QGIS >=3.1 LTR installed (opened once else the following directory won't exist)
-
+   
     # 1. 
     cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 
@@ -44,17 +44,6 @@ The plugin and the simulator are developed in different repos so cloning both re
     git pull
     cd ..
 
-    # 4. (Optional) virtual environment : Remember to activate it every time
-    python3 -m venv --system-site-packages ~/pyenv/pyqgis
-    echo 'alias pyqgis="source ~/pyenv/pyqgis/bin/activate"'>>~/.bashrc
-    echo 'alias qgis="source ~/pyenv/pyqgis/bin/activate && qgis"'>>~/.bashrc
-    bash
-    pyqgis
-
-    # 5.
-    pip install --upgrade pip wheel setuptools
-    pip install -r requirements.txt
-
     # 6. Compile
     cd C2FSB/Cell2FireC
     sudo apt install g++ libboost-all-dev libeigen3-dev
@@ -63,6 +52,18 @@ The plugin and the simulator are developed in different repos so cloning both re
     # If it fails check where your distribution installs eigen. Because the `makefile` assumes `EIGENDIR = /usr/include/eigen3/`  
     # Locate it with `nice find / -readable -type d -name eigen3 2>/dev/null`  
     # Then edit `makefile` accordingly & try again.  
+    
+## venv
+    mkdir ~/pyenv/pyqgis
+    python3 -m venv --system-site-packages ~/pyenv/pyqgis  
+    source ~/pyenv/pyqgis/bin/activate
+    pip install --upgrade pip wheel setuptools  
+    pip install -r requirements.txt  
+    pip install --upgrade matplotlib  
+    echo 'alias pyqgis="source ~/pyenv/pyqgis/bin/activate"'>>~/.bashrc  
+    echo 'alias qgis="source ~/pyenv/pyqgis/bin/activate && qgis"'>>~/.bashrc  
+    bash  
+    pyqgis  
 
 ## 1. Object Naming Convention
 To coordinate `C2FSB/Cell2Fire/ParseInputs.py`, QtDesigner and the plugin code (start at `fire2am.py`), the following standard must be followed: 

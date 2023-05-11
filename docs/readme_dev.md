@@ -62,8 +62,9 @@ The plugin and the simulator are developed in different repos so cloning both re
     pip install --upgrade matplotlib  
     echo 'alias pyqgis="source ~/pyenv/pyqgis/bin/activate"'>>~/.bashrc  
     echo 'alias qgis="source ~/pyenv/pyqgis/bin/activate && qgis"'>>~/.bashrc  
-    bash  
-    pyqgis  
+    bash    # alias works after reloading bashrc
+    pyqgis  # to activate environment
+    qgis    # to launch qgis (you can change the logger default level in fire2am_utils.py)
 
 ## 1. Object Naming Convention
 To coordinate `C2FSB/Cell2Fire/ParseInputs.py`, QtDesigner and the plugin code (start at `fire2am.py`), the following standard must be followed: 

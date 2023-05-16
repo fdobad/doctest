@@ -201,9 +201,10 @@ A typical run outpus:
 This is the simulation log, if you want the full log including the plugin, use the log panel.  
 It is normal for small number of simulations (<100) that the time spent in Cell2Fire can be even less than the postprocessing!  
 
-## Postprocessing
-
-TODO
+## Outputs
+### Animating a fire isochrone
+When simulating just one fire  (the default value on Ignitions > Number of simulations : 1), the evolution of the fire is returned (thanks to the --grids command line option). You can animate the isochrone following this guide:
+<img src="img/animate_fireEvolution.gif" alt='cannot load image' height=500px >  
 
 ## Known issues  
 - Directories or folders with spaces won't work

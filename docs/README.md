@@ -108,7 +108,7 @@ Take me back to [Windows💩 install instructions](#windows)
     mv fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
     ```
 2. Python requirements  
-    Optional: [use a python virtual environment instead](readme_dev.md#venv)
+    Recommended instead: [use a python virtual environment instead](readme_dev.md#venv)
     ```
     cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am
     pip install --upgrade pip wheel setuptools

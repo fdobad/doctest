@@ -24,36 +24,56 @@ This dialog reads Cell2Fire's argument parser directly and exposes all options i
 - cell2fire: Run the included examples, visit https://github.com/fire2a  
 Check all the references links at the [end](#required).
 
-## Clone instead of installing
-The plugin and the simulator are developed in different repos so cloning both repos with one as a submodule is suggested  
-    
-    # 0. QGIS >=3.1 LTR installed (opened once else the following directory won't exist)
-   
-    # 1. 
-    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins
+## Advanced installing
+Friendly advice: Never run a command if you don't know what it does
 
-    # 2. 
-    git clone git@github.com:fdobad/fire2am-qgis-plugin.git fire2am
+#### 0. Install QGIS & open it at least once!  
+    # Else plugins directory won't exist  
+    # version >=3.1  
+    https://qgis.org/en/site/forusers/alldownloads.html  
 
-    # 3. (optional) submodule
-    cd fire2am
+#### 1. Clone instead of installing  
+    # desired place example ~/dev/fire2am-qgis  
+    git clone git@github.com:fdobad/fire2am-qgis-plugin.git ~/dev/fire2am-qgis  
+
+#### 2. Create symbolic link to QGIS plugins  
+Changes to the code will be reflected after reloading the plugin (except some imports then reload QGIS)  
+If by accident, you uninstall QGIS or the plugin, the code wont be affected  
+
+    # link must be named fire2am  
+    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins  
+    ln -s ~/dev/fire2am-qgis fire2am  
+
+#### 3. Optional, create your own branch on your own repo for contributing, better sooner than later
+    cd ~/dev/fire2am-qgis
+    git checkout -b awesome_feature
+    # fork from web ui
+    git remote set-url origin git@github.com:<youruser>/fire2am-qgis-plugin.git
+
+#### 4. Optional, get the latest C2FSB as git submodule  
+The plugin and the simulator are developed in different repos!  
+
+    cd ~/dev/fire2am-qgis
     rm -r C2FSB
     git submodule init
     git submodule add git@github.com:fire2a/C2FSB.git C2FSB
-    cd C2FSB
-    git pull
-    cd ..
+    git submodule update --init --recursive --remote
 
-    # 6. Compile
-    cd C2FSB/Cell2FireC
+#### 5. Optional, compile the C2FSB binary
+(Windows compiling instructions on C2FSB repo)
+
+    cd ~/dev/fire2am-qgis/C2FSB/Cell2FireC
     sudo apt install g++ libboost-all-dev libeigen3-dev
+    make clean
     make
-     
     # If it fails check where your distribution installs eigen. Because the `makefile` assumes `EIGENDIR = /usr/include/eigen3/`  
     # Locate it with `nice find / -readable -type d -name eigen3 2>/dev/null`  
     # Then edit `makefile` accordingly & try again.  
-    
-## venv
+  
+#### 6. Install python dependencies
+`Python 3.9.2` was used for developing  
+##### 6.A. Recommended install into virtual environment  
+
     mkdir ~/pyenv/pyqgis
     python3 -m venv --system-site-packages ~/pyenv/pyqgis  
     source ~/pyenv/pyqgis/bin/activate
@@ -65,11 +85,21 @@ The plugin and the simulator are developed in different repos so cloning both re
     bash    # alias works after reloading bashrc
     pyqgis  # to activate environment
     qgis    # to launch qgis (you can change the logger default level in fire2am_utils.py)
+            # is recommended running qgis from the terminal to see more logs
+ 
+##### 6.Bad. Alternative install into user folders
+
+    # ~/.local/lib/python3 ?
+    pip install --upgrade pip wheel setuptools  
+    pip install -r ~/dev/fire2am-qgis/requirements.txt  
+    pip install --upgrade matplotlib  
 
 ## 1. Object Naming Convention
 To coordinate `C2FSB/Cell2Fire/ParseInputs.py`, QtDesigner and the plugin code (start at `fire2am.py`), the following standard must be followed: 
 
 Mostly when adding components in QtDesigner their object name is assigned `classType_n`, so you must change its `objectName` to `prefixName_destName`.  
+
+_Some batch get-all-of-type rutines will fail if you don't follow them!_
 
 1.1 Prefix simplified component type: 
 
@@ -115,7 +145,8 @@ Mostly when adding components in QtDesigner their object name is assigned `class
 cd img
 pyrcc5 -o resources.py resources.qrc
 ```
-### Qt Designer bug when adding a resource
+## 3. QtDesigner bugs so far
+### 3.1. When adding a new resource
 If the plugin won't start after adding a resource with `No module named 'resources_rc'`.
 Delete the line in between 
 ```
@@ -125,12 +156,22 @@ Delete the line in between
 ```
 Ref: [broken plugin](https://gis.stackexchange.com/questions/271848/the-plug-in-is-broken-no-module-named-resources)
 
-## 3. Cell2fire python developer tips
-- use print('...', flush=True) for rasing the message to the gui
+### 3.2. Filter input on mQgsMapLayerComboBox
+This can be achieved after the dialog is loaded with `self.dlg.mMapLayer.setFilters(QgsMapLayerProxyModel.LineLayer)`  
+When you use it, you'll get a broken ui file, solvable by deleting:
+   ```
+   <property name="filters">
+    <set>QgsMapLayerProxyModel::HasGeometry|QgsMapLayerProxyModel::LineLayer|QgsMapLayerProxyModel::MeshLayer|QgsMapLayerProxyModel::NoGeometry|QgsMapLayerProxyModel::PluginLayer|QgsMapLayerProxyModel::PointLayer|QgsMapLayerProxyModel::PolygonLayer|QgsMapLayerProxyModel::VectorLayer|QgsMapLayerProxyModel::VectorTileLayer</set>
+   </property>
+   ```
+Ref: [issue](https://github.com/qgis/QGIS/issues/38472)
+
+## 4. Cell2fire python developer tips
+- use print('...', flush=True) for raising the message to the gui Run tab faster
 - never use import *
 - prefer np.loadtxt over pd.read_csv
 
-## 4. References
+## 5. References
 ### Required
 - [qgis docs](https://docs.qgis.org/latest/en/docs/index.html)
 - [pyqgis api](https://www.qgis.org/pyqgis/master/index.html)

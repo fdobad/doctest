@@ -49,6 +49,8 @@ If by accident, you uninstall QGIS or the plugin, the code wont be affected
     git checkout -b awesome_feature
     # fork from web ui
     git remote set-url origin git@github.com:<youruser>/fire2am-qgis-plugin.git
+    # push new branch
+    git push -u origin <branch>
 
 #### 4. Optional, get the latest C2FSB as git submodule  
 The plugin and the simulator are developed in different repos!  

@@ -38,7 +38,7 @@ Overview (keep reading don't do this right away):
 - Activate inside QGIS
 
 Choose your platform:
-- [Linux ](#linux)🐧
+- [Linux ](#linux)🗽
 - [Windows ](#windows)💩
 - [MacOS ](#linux)🤡
 

@@ -65,6 +65,22 @@ The plugin and the simulator are developed in different repos so cloning both re
     bash  
     pyqgis  
 
+## 0. Adding new packages
+As this [commit](https://github.com/fdobad/fire2am-qgis-plugin/commit/4640f14b9e71c2663f926f17418ccbe4c55efd0f)explains.  
+The plugin loader checks if the following import names in `requirements_import_names.txt` are available.  
+If the module is not available, it forces pip to install it, according to the same line in `requirements.txt`.  
+Done in a very discouraged way:  
+
+    In [1]: from pip import main as pip_main
+    In [2]: pip_main?
+    Signature: pip_main(args: Optional[List[str]] = None) -> int
+    Docstring:
+    This is an internal API only meant for use by pip's own console scripts.
+
+    For additional details, see https://github.com/pypa/pip/issues/7498.
+
+__IS NECESSARY TO MANTAIN BOTH:__ `requirements.txt` and `requirements_import_names.txt`
+
 ## 1. Object Naming Convention
 To coordinate `C2FSB/Cell2Fire/ParseInputs.py`, QtDesigner and the plugin code (start at `fire2am.py`), the following standard must be followed: 
 

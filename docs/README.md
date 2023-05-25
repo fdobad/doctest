@@ -90,23 +90,25 @@ Take me back to [Windows💩 install instructions](#windows)
 ## Linux
 0. Install QGIS  
     - Debian LTR version: Super Key > type 'QGIS' > Click Install
+         - _SQL problems reported on Ubuntu🤡 jammy 22.04 (LTS)_
     - Others: https://qgis.org/en/site/forusers/alldownloads.html#linux
     - MacOS🤡: https://qgis.org/en/site/forusers/download.html#mac
+    
 1. Donwload a [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) (ask fire2a team for permission to the repo), or get it by email
-2. Unzip it into the plugins folder
+2. Unzip it into the plugins folder (one level depth)
     ```
     cd ~/Downloads    # probably
     
-    # release v>0.7
+    # release v>1.0
     unzip fire2am.zip
     mv fire2am/fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
     
-    # release v<=0.7
+    # release v<=1.0
     unzip fire2am.zip -d fire2am
     mv fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
     ```
 2. Python requirements  
-    Optional: [use a python virtual environment instead](readme_dev.md#venv)
+    Recommended instead: [use a python virtual environment instead](readme_dev.md#venv)
     ```
     cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am
     pip install --upgrade pip wheel setuptools

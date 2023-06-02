@@ -39,7 +39,7 @@ Overview (keep reading don't do this right away):
 
 Choose your platform:
 - [Linux ](#linux)🗽
-- [Windows ](#windows)💩  
+- [Windows ](#windows)💩
 - [MacOS ](#linux)🤡
 
 ## Windows
@@ -66,7 +66,7 @@ If you don't want to reinstall QGIS and understood the [overview](#installation)
 | <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
 
 ### Windows_debug
-If any output looks like a failure message run `installer_debug.bat` and let us now the output.  
+If any output looks like a failure message, run `installer_debug.bat` and let us now the output.  
 Copy the output from the command prompt window by:  
         1. Selecting the text (left-click then select)  
         2. Copy it by pressing the secondary mouse button (right button)  
@@ -75,15 +75,18 @@ The installer checks only for these errors: "Qgis Environment failed", "Upgradin
 The most common error is a `ModuleNotFoundError`, after [activation](#activate) meaning something silently failed installing pip packages (this will be automated on QGIS 3.8)  
 
 ### Windows_manual 
-- If pip is not installed, launch OsGeo4W Setup then install pip component:  
-        1. 'win' button, type 'osgeo4w-setup', launch it  
-        2. As seen on 'select package dialog : pip' image above  
-- Launch osgeo console, upgrade pip then install requirementes:  
-        1. 'win' button, type 'osgeo4w shell'  
-        2. `pip install --upgrade pip setuptools wheel`, if pip fails `python3 -m pip --upgrade pip`  
-        3. `pip install -r C:\path\to\fire2am\requirements.txt`  
-- Move the source folder into QGIS's plugins directory `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am`  
-- [Enable the plugin inside QGIS](#activate)  
+
+1. If you do not have pip installed on your system, you will need to install it using the OsGeo4W Setup application. To do this:
+    1. Click the 'win' button and type 'osgeo4w-setup'
+    2. Launch the application
+    3. Select the 'pip' component from the package dialog and install it
+2. Once you have pip installed, open the OsGeo console and upgrade pip before installing the plugin requirements:
+    1. Click the 'win' button and type 'osgeo4w shell'
+    2. Type `pip install --upgrade pip setuptools wheel` and hit enter. If pip fails, try `python3 -m pip --upgrade pip`
+    3. Type `pip install -r C:\path\to\fire2am\requirements.txt` and hit enter. Note that in this step you must change 'C:\path\to\fire2am\requirements.txt' for your actual path to '\fire2am\requirements.txt'.
+    4. After installing the plugin requirements, move the source folder to QGIS's plugins directory. The path for this directory is `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am.`
+
+Finally, enable the plugin inside QGIS. You can do this by following the instructions in the [Activate the Plugin section.](#activate). 
 
 Take me back to [Windows💩 install instructions](#windows)
 

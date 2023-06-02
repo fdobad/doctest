@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//fdobad//ical v1.0//EN
+PRODID:-//appsheet.com//appsheet 1.0//EN
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
 SUMMARY:"b'GIF para leer los outputs del plugin'"

@@ -6,43 +6,104 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-The softwares enables you to simulate thousand of forest fires on any landscape, providede that you have a fuel raster with Scott and Burgan fuel types, inside [QGIS](https://qgis.org). 
+The softwares enables you to simulate thousand of forest fires on any landscape, provided that you have a fuel raster -with Scott and Burgan fuel types; and [QGIS](https://qgis.org). 
 
-With the bare minumiun input being forest fuels. Other spatial inputs can include an elevation layer; canopy base height, bulk density or fraction cover; ignition probabilities, weather scenarios, moisture content, etc.
+With the bare minimun input being forest fuels. Other spatial inputs can include: an elevation layer; canopies base height, bulk density and fraction cover; also ignition probabilities, weather scenarios, moisture content, protection values etc.
 
-A cup-of-coffee run length is less than 500x500 raster with 50 simulations (simulations run in parallel, the maximum number of simultaneous runs can be adjusted via number of threads on the 'Optional Rules' tab) 
+A cup-of-coffee run length is around a 500x500 sized raster with 50 simulations (each fire runs in parallel, and the overall load to your PC can be adjusted via the 'number of threads' parameter [see 'Optional Rules' tab])
 
-Depending on the number of simulations performend, this  plug in provides several outputs: 
-- If just one simulation is performed you can get: 
-    1. The Fire perimeter
-    2. The ignition point
-    3. Animated isochrones
-    4. Flame lenght, Byram Intensity, Rate of spread, etc. for each burned cell
-- If mode than one simulation is performed you can get
-    1. a Burn Probabilitie Map
-    2. a Betweenness Centrality Map
-    3. Maps of the Averages Flame lenght, Byram Intensity, Rate of spread, etc.
-Spatial outputs are stored as geopackages and numerical statistics are shown on the 'Tables' tab.  
+Several outputs are available:  
+1. Ignition point(s)
+2. Fire scars:  
+    2.1 Final or every n periods (so a animated isochrone is rendered)  
+    2.2 Burn probability map (\>1 simulation)  
+3. Spatial statistics:  
+   3.1 Flame length  
+   3.2 Byram Intensity  
+   3.3 Rate of spread  
+   3.4 Downstream Protection Value (counting downstream burned cells if no ecological protection value layer is provided)  
+   3.5 Betweenness Centrality  
+4. Descriptive or numerical statistics:  
+   4.1 from the spatial ones  
+   4.2 runtime statistics  
+6. Plots (WIP)
+
+Spatial outputs are shown and stored as geopackages (*.gpkg) along everything needed for reproducing the simulation(s)
+
+Currently the FIRE-RES team is working in a firebreak placement!
 
 [Install](#installation) then, choose your guide:
 - [User ](readme_user.md)![icon](img/icon.png)
-- [Expert ](readme_dev.md)![icon](img/icon_dev.png)
+- [Expert ](readme_dev.md)![icon](img/icon_dev.png) TL;DR: mail fire2a@fire2a.com for access to the repo
 
 _Most sections have a .gif animation at the end summarizing it._
 
 # Installation
-Overview (keep reading don't do this right away):
-- Ask the fire2a team for a zip file or access to the repository
-- pip install python required packages (on QGIS python environment). See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for information about QGIS environment. 
-- Move the source folder to QGIS's plugins directory. See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for more information about this step. 
-- Activate inside QGIS
+## Overview
 
-Choose your platform:
+Easiest, using QGIS's plugin manager interface:
+
+- Install/update QGIS
+- Install the plugin requirements (on qgis's python)
+- Add fire2a's plugin server
+- Install the plugin
+  
+Medium (network problems? binary didn't work?):
+
+- Install/update QGIS
+- __Ask the fire2a team for a zip release__
+  - A: unzip, click & authorize `install.bat`
+  - or B: unzip into QGIS's python plugin folder & install python requirements
+- Install the plugin (using QGIS's plugin manager interface)
+- __Compile__
+
+Developer:
+- Install/update QGIS
+- Ask the fire2a team for access to both repos (plugin and Cell2Fire)
+- clone and submodule-add respectively
+- compile (depends `g++ libboost-all-dev libeigen3-dev`, `make`)
+  - Alternative: there's a Visual Studio project provided
+- symbolic link to QGIS python plugin folders
+- Install the plugin (using QGIS's plugin manager interface)
+
+## Choose your platform:
 - [Linux ](#linux)🗽
 - [Windows ](#windows)💩
 - [MacOS ](#linux)🤡
 
 ## Windows
+1. Install QGIS, two alternatives:
+   
+    A. Download & install QGIS from: https://qgis.org/en/site/forusers/download.html#windows  
+    or B. Open a terminal (cmd not powershell), run:
+    ```> winget install --id OSGeo.QGIS```
+
+2. Install the plugin requirements (on qgis's python)
+
+    2.1 Download [requirements.txt](./requirements.txt) to Downloads folder  
+    2.2 Run OsGeo4WShell from the start menu  (Start > Enter 'osgeo')  
+    2.3 Enter `> pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (modify the path to requirements file if needed)
+   
+       
+- Add fire2a's plugin server
+- Install the plugin requirements (on qgis's python)
+- Install the plugin
+
+# si no tienes habilitado winget, entra a la ms app store, lo buscas e instalas
+
+
+# aqui eventualmente cambia la version
+> 
+
+# habilitado el ambiente de python de QGIS del paso anterior, suponiendo que el adjunto está en downloads
+
+
+Esto ya es gui:
+0. abrir QGIS
+1. Copiar este link: https://fdobad.github.io/qgis-plugin-server/plugins.xml 
+2. Añadirlo en "qgis menu" > "plugins" > "Manage ... " > Settings > Add
+3. Ahora está en el listado de todos los plugins para ser instalado con un lick! (All > buscar fire2am > click install)
+
 If you don't want to reinstall QGIS and understood the [overview](#installation), you can [manually install](#windows_manual).  
  1. Install QGIS, using OSGeo4W net installer  
     - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  

@@ -6,23 +6,33 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-The softwares enables you to simulate thousand of forest fires on any landscape, providede that you have a fuel raster with Scott and Burgan fuel types, inside [QGIS](https://qgis.org). 
+The softwares enables you to simulate thousand of forest fires on any landscape, provided a fuel raster -with Scott and Burgan fuel types; and [QGIS](https://qgis.org). 
 
-With the bare minumiun input being forest fuels. Other spatial inputs can include an elevation layer; canopy base height, bulk density or fraction cover; ignition probabilities, weather scenarios, moisture content, etc.
+With the bare minimun input being a forest fuels raster. Other spatial inputs can include: an elevation layer; canopies base height, bulk density and fraction cover; also ignition probabilities, weather scenarios, moisture content, protection values, etc.
 
-A cup-of-coffee run length is less than 500x500 raster with 50 simulations (simulations run in parallel, the maximum number of simultaneous runs can be adjusted via number of threads on the 'Optional Rules' tab) 
+A cup-of-coffee run length is around a 500x500 sized raster with 50 simulations on a modern laptop. Each fire simulation runs in parallel, though the overall load to the computer can be adjusted via the 'number of threads' parameter (see 'Optional Rules' tab).
 
-Depending on the number of simulations performend, this  plug in provides several outputs: 
-- If just one simulation is performed you can get: 
-    1. The Fire perimeter
-    2. The ignition point
-    3. Animated isochrones
-    4. Flame lenght, Byram Intensity, Rate of spread, etc. for each burned cell
-- If mode than one simulation is performed you can get
-    1. a Burn Probabilitie Map
-    2. a Betweenness Centrality Map
-    3. Maps of the Averages Flame lenght, Byram Intensity, Rate of spread, etc.
-Spatial outputs are stored as geopackages and numerical statistics are shown on the 'Tables' tab.  
+Several outputs are available:  
+1. Ignition point(s)
+2. Fire scars:  
+    2.1 Final or every n periods  
+    2.2 Animated isochrone  
+    2.2 Burn probability map (\>1 simulation)  
+3. Spatial statistics:  
+   3.1 Flame length  
+   3.2 Byram Intensity  
+   3.3 Rate of spread  
+   3.4 Downstream Protection Value (counting downstream burned cells if no ecological protection value layer is provided)  
+   3.5 Betweenness Centrality  
+4. Descriptive or numerical statistics (see 'Tables' tab):  
+   4.1 from the spatial ones  
+   4.2 runtime statistics  
+6. Plots (see 'Tables' tab):  
+  (WIP)
+
+Spatial outputs are shown and stored as geopackages (*.gpkg) along everything needed for reproducing the simulation(s) experiment.
+
+Currently the FIRE-RES team is working on a firebreak placement feature: Including  landspace clustering (for automatically infering management units) and stochastic network disrupting algorithms! Contact us at: fire2a@fire2a.com!
 
 [Install](#installation) then, choose your guide:
 - [User ](readme_user.md)![icon](img/icon.png)
@@ -31,29 +41,62 @@ Spatial outputs are stored as geopackages and numerical statistics are shown on 
 _Most sections have a .gif animation at the end summarizing it._
 
 # Installation
-Overview (keep reading don't do this right away):
-- Ask the fire2a team for a zip file or access to the repository
-- pip install python required packages (on QGIS python environment). See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for information about QGIS environment. 
-- Move the source folder to QGIS's plugins directory. See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for more information about this step. 
-- Activate inside QGIS
+## Overview
 
-Choose your platform:
-- [Linux ](#linux)🗽
-- [Windows ](#windows)💩
+1. Install/update QGIS
+2. Install the plugin requirements (on QGIS's python environment)  
+
+Using QGIS's plugin manager interface:  
+
+3. Add fire2a plugin repository
+4. Install the plugin
+  
+B. Contingencies  
+1. Cell2Fire binary compatibility: See per-platform compiling instructions.  
+2. Network access problem to plugin repository: Ask the fire2a team for a zipped release  
+
+## Choose your platform:
+- [__Linux__ ](#linux)🗽
 - [MacOS ](#linux)🤡
+- [Windows ](#windows)💩
 
 ## Windows
-If you don't want to reinstall QGIS and understood the [overview](#installation), you can [manually install](#windows_manual).  
- 1. Install QGIS, using OSGeo4W net installer  
-    - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
-    - Use default options for everything but
-    - Select packages to install "QGIS desktop" & "pip"
- 2. At least open and close QGIS once
- 3. Download & un7zip the latest [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) into `fire2am` (default suggested name)  
- 5. Inside `fire2am`, double click on `install_windows.bat`, a command prompt will launch and a warning dialog will rise.
-    - Click on 'More info' > 'Run anyway' on the warning dialog
+1. Install or update QGIS, two alternatives:
+   
+    A. Download & install QGIS from: https://qgis.org/en/site/forusers/download.html#windows  
+    or B. Open a terminal, run: `winget install --id OSGeo.QGIS` follow on screen instructions
+
+2. Install the plugin requirements (on qgis's python)
+
+    2.1 Download [requirements.txt](./requirements.txt)  
+    2.2 Run "OsGeo4WShell" from the start menu  (Start > type 'osgeo' Enter)  
+    2.3 Enter `pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (Modify the path to requirements file if needed)
+   
+3. Add fire2a's plugin repository:
+
+    3.1 Open QGIS  
+    3.2 Menu Bar: Plugins > Manage and Install Plugins... > Settings > Add... (button at the bottom right of Plugin Repositories section)  
+    3.2 "Repository details" dialog opens. Fill inputs:  
+        "Name": any, though "Fire2a" is suggested  
+        "URL" input with "https://fdobad.github.io/qgis-plugin-server/plugins.xml"  
+   Confirm (Ok button), repos will be reloaded and a success state should be seen from the fire2a repository
+
+4. Install the plugin
+
+   4.1 On the same "Plugins" dialog, click "All" on the left vertical tab.  
+   4.2 Type "fire2am" on the Search...  
+   4.2 Select it from the list  
+   4.3 Click the install button  
+
+## Windows with a zip
+
+If accessing "https://fdobad.github.io/qgis-plugin-server/plugins.xml" is impossible in your network, you can request a zip file release from the Fire2a team.   
+    1. Unzip it  
+    2. Inside `fire2am`, double click on `install_windows.bat`  
+    3. If a warning dialog rises, dismiss it by clicking on 'More info' > 'Run anyway'.
+    4. A terminal windows will rise, and steps 2 and 3 will be done.
+   
     - If anything fails, run the `install_debug.bat` and [report back](#windows_debug).
- 6. [Enable the plugin inside QGIS](#activate)
 
 | select package dialog : pip |
 | --- |

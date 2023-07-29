@@ -72,7 +72,7 @@ B. Contingencies
     2.2 Run "OsGeo4WShell" from the start menu  (Start > type 'osgeo' Enter)  
     2.3 Enter `pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (Modify the path to requirements file if needed; tip: 2dary click to paste in terminal)  
    
-3. Add fire2a's plugin repository:
+4. Add fire2a's plugin repository:
 
     3.1 Open QGIS  
     3.2 Menu Bar: Plugins > Manage and Install Plugins... > Settings > Add... (button at the bottom right of Plugin Repositories section)  
@@ -81,7 +81,7 @@ B. Contingencies
         "URL" input with "https://fdobad.github.io/qgis-plugin-server/plugins.xml"  
    Confirm (Ok button), repos will be reloaded and a success state should be seen from the fire2a repository
 
-4. Install the plugin
+5. Install the plugin
 
    4.1 On the same "Plugins" dialog, click "All" on the left vertical tab.  
    4.2 Type "fire2am" on the Search...  

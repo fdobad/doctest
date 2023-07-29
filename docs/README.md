@@ -6,16 +6,17 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-The softwares enables you to simulate thousand of forest fires on any landscape, provided that you have a fuel raster -with Scott and Burgan fuel types; and [QGIS](https://qgis.org). 
+The softwares enables you to simulate thousand of forest fires on any landscape, provided a fuel raster -with Scott and Burgan fuel types; and [QGIS](https://qgis.org). 
 
-With the bare minimun input being forest fuels. Other spatial inputs can include: an elevation layer; canopies base height, bulk density and fraction cover; also ignition probabilities, weather scenarios, moisture content, protection values etc.
+With the bare minimun input being a forest fuels raster. Other spatial inputs can include: an elevation layer; canopies base height, bulk density and fraction cover; also ignition probabilities, weather scenarios, moisture content, protection values, etc.
 
-A cup-of-coffee run length is around a 500x500 sized raster with 50 simulations (each fire runs in parallel, and the overall load to your PC can be adjusted via the 'number of threads' parameter [see 'Optional Rules' tab])
+A cup-of-coffee run length is around a 500x500 sized raster with 50 simulations on a modern laptop. Each fire simulation runs in parallel, though the overall load to the computer can be adjusted via the 'number of threads' parameter (see 'Optional Rules' tab).
 
 Several outputs are available:  
 1. Ignition point(s)
 2. Fire scars:  
-    2.1 Final or every n periods (so a animated isochrone is rendered)  
+    2.1 Final or every n periods  
+    2.2 Animated isochrone  
     2.2 Burn probability map (\>1 simulation)  
 3. Spatial statistics:  
    3.1 Flame length  
@@ -23,98 +24,79 @@ Several outputs are available:
    3.3 Rate of spread  
    3.4 Downstream Protection Value (counting downstream burned cells if no ecological protection value layer is provided)  
    3.5 Betweenness Centrality  
-4. Descriptive or numerical statistics:  
+4. Descriptive or numerical statistics (see 'Tables' tab):  
    4.1 from the spatial ones  
    4.2 runtime statistics  
-6. Plots (WIP)
+6. Plots (see 'Tables' tab):  
+  (WIP)
 
-Spatial outputs are shown and stored as geopackages (*.gpkg) along everything needed for reproducing the simulation(s)
+Spatial outputs are shown and stored as geopackages (*.gpkg) along everything needed for reproducing the simulation(s) experiment.
 
-Currently the FIRE-RES team is working in a firebreak placement!
+Currently the FIRE-RES team is working on a firebreak placement feature: Including  landspace clustering (for automatically infering management units) and stochastic network disrupting algorithms! Contact us at: fire2a@fire2a.com!
 
 [Install](#installation) then, choose your guide:
 - [User ](readme_user.md)![icon](img/icon.png)
-- [Expert ](readme_dev.md)![icon](img/icon_dev.png) TL;DR: mail fire2a@fire2a.com for access to the repo
+- [Expert ](readme_dev.md)![icon](img/icon_dev.png)
 
 _Most sections have a .gif animation at the end summarizing it._
 
 # Installation
 ## Overview
 
-Easiest, using QGIS's plugin manager interface:
+1. Install/update QGIS
+2. Install the plugin requirements (on QGIS's python environment)  
 
-- Install/update QGIS
-- Install the plugin requirements (on qgis's python)
-- Add fire2a's plugin server
-- Install the plugin
+Using QGIS's plugin manager interface:  
+
+3. Add fire2a plugin repository
+4. Install the plugin
   
-Medium (network problems? binary didn't work?):
-
-- Install/update QGIS
-- __Ask the fire2a team for a zip release__
-  - A: unzip, click & authorize `install.bat`
-  - or B: unzip into QGIS's python plugin folder & install python requirements
-- Install the plugin (using QGIS's plugin manager interface)
-- __Compile__
-
-Developer:
-- Install/update QGIS
-- Ask the fire2a team for access to both repos (plugin and Cell2Fire)
-- clone and submodule-add respectively
-- compile (depends `g++ libboost-all-dev libeigen3-dev`, `make`)
-  - Alternative: there's a Visual Studio project provided
-- symbolic link to QGIS python plugin folders
-- Install the plugin (using QGIS's plugin manager interface)
+B. Contingencies  
+1. Cell2Fire binary compatibility: See per-platform compiling instructions.  
+2. Network access problem to plugin repository: Ask the fire2a team for a zipped release  
 
 ## Choose your platform:
-- [Linux ](#linux)🗽
-- [Windows ](#windows)💩
+- [__Linux__ ](#linux)🗽
 - [MacOS ](#linux)🤡
+- [Windows ](#windows)💩
 
 ## Windows
-1. Install QGIS, two alternatives:
+1. Install or update QGIS, two alternatives:
    
     A. Download & install QGIS from: https://qgis.org/en/site/forusers/download.html#windows  
-    or B. Open a terminal (cmd not powershell), run:
-    ```> winget install --id OSGeo.QGIS```
+    or B. Open a terminal, run: `winget install --id OSGeo.QGIS` follow on screen instructions
 
 2. Install the plugin requirements (on qgis's python)
 
-    2.1 Download [requirements.txt](./requirements.txt) to Downloads folder  
-    2.2 Run OsGeo4WShell from the start menu  (Start > Enter 'osgeo')  
-    2.3 Enter `> pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (modify the path to requirements file if needed)
+    2.1 Download [requirements.txt](./requirements.txt)  
+    2.2 Run "OsGeo4WShell" from the start menu  (Start > type 'osgeo' Enter)  
+    2.3 Enter `pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (Modify the path to requirements file if needed)
    
-       
-- Add fire2a's plugin server
-- Install the plugin requirements (on qgis's python)
-- Install the plugin
+3. Add fire2a's plugin repository:
 
-# si no tienes habilitado winget, entra a la ms app store, lo buscas e instalas
+    3.1 Open QGIS  
+    3.2 Menu Bar: Plugins > Manage and Install Plugins... > Settings > Add... (button at the bottom right of Plugin Repositories section)  
+    3.2 "Repository details" dialog opens. Fill inputs:  
+        "Name": any, though "Fire2a" is suggested  
+        "URL" input with "https://fdobad.github.io/qgis-plugin-server/plugins.xml"  
+   Confirm (Ok button), repos will be reloaded and a success state should be seen from the fire2a repository
 
+4. Install the plugin
 
-# aqui eventualmente cambia la version
-> 
+   4.1 On the same "Plugins" dialog, click "All" on the left vertical tab.  
+   4.2 Type "fire2am" on the Search...  
+   4.2 Select it from the list  
+   4.3 Click the install button  
 
-# habilitado el ambiente de python de QGIS del paso anterior, suponiendo que el adjunto está en downloads
+## Windows with a zip
 
-
-Esto ya es gui:
-0. abrir QGIS
-1. Copiar este link: https://fdobad.github.io/qgis-plugin-server/plugins.xml 
-2. Añadirlo en "qgis menu" > "plugins" > "Manage ... " > Settings > Add
-3. Ahora está en el listado de todos los plugins para ser instalado con un lick! (All > buscar fire2am > click install)
-
-If you don't want to reinstall QGIS and understood the [overview](#installation), you can [manually install](#windows_manual).  
- 1. Install QGIS, using OSGeo4W net installer  
-    - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
-    - Use default options for everything but
-    - Select packages to install "QGIS desktop" & "pip"
- 2. At least open and close QGIS once
- 3. Download & un7zip the latest [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) into `fire2am` (default suggested name)  
- 5. Inside `fire2am`, double click on `install_windows.bat`, a command prompt will launch and a warning dialog will rise.
-    - Click on 'More info' > 'Run anyway' on the warning dialog
+If accessing "https://fdobad.github.io/qgis-plugin-server/plugins.xml" is impossible in your network, you can request a zip file release from the Fire2a team.   
+    1. Unzip it  
+    2. Inside `fire2am`, double click on `install_windows.bat`  
+    3. If a warning dialog rises, dismiss it by clicking on 'More info' > 'Run anyway'.
+    4. A terminal windows will rise, and steps 2 and 3 will be done.
+   
     - If anything fails, run the `install_debug.bat` and [report back](#windows_debug).
- 6. [Enable the plugin inside QGIS](#activate)
 
 | select package dialog : pip |
 | --- |

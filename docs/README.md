@@ -38,9 +38,9 @@ Currently the FIRE-RES team is working on a firebreak placement feature: Includi
 - [User ](readme_user.md)![icon](img/icon.png)
 - [Expert ](readme_dev.md)![icon](img/icon_dev.png)
 
-_Most sections have a .gif animation at the end summarizing it._
-
 # Installation
+_Most sections have a .gif animation executing the instructions, so read till the end before executing._
+
 ## Overview
 
 1. Install/update QGIS
@@ -66,13 +66,13 @@ B. Contingencies
     A. Download & install QGIS from: https://qgis.org/en/site/forusers/download.html#windows  
     or B. Open a terminal, run: `winget install --id OSGeo.QGIS` follow on screen instructions
 
-2. Install the plugin requirements (on qgis's python)
+2. Install the plugin requirements (on qgis's python). If this fails there's a last resort [here](<#forcing python requirements in QGIS console>)
 
     2.1 Download [requirements.txt](./requirements.txt)  
     2.2 Run "OsGeo4WShell" from the start menu  (Start > type 'osgeo' Enter)  
-    2.3 Enter `pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (Modify the path to requirements file if needed)
+    2.3 Enter `pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (Modify the path to requirements file if needed; tip: 2dary click to paste in terminal)  
    
-3. Add fire2a's plugin repository:
+4. Add fire2a's plugin repository:
 
     3.1 Open QGIS  
     3.2 Menu Bar: Plugins > Manage and Install Plugins... > Settings > Add... (button at the bottom right of Plugin Repositories section)  
@@ -81,108 +81,88 @@ B. Contingencies
         "URL" input with "https://fdobad.github.io/qgis-plugin-server/plugins.xml"  
    Confirm (Ok button), repos will be reloaded and a success state should be seen from the fire2a repository
 
-4. Install the plugin
+5. Install the plugin
 
    4.1 On the same "Plugins" dialog, click "All" on the left vertical tab.  
    4.2 Type "fire2am" on the Search...  
    4.2 Select it from the list  
    4.3 Click the install button  
 
-## Windows with a zip
-
-If accessing "https://fdobad.github.io/qgis-plugin-server/plugins.xml" is impossible in your network, you can request a zip file release from the Fire2a team.   
-    1. Unzip it  
-    2. Inside `fire2am`, double click on `install_windows.bat`  
-    3. If a warning dialog rises, dismiss it by clicking on 'More info' > 'Run anyway'.
-    4. A terminal windows will rise, and steps 2 and 3 will be done.
-   
-    - If anything fails, run the `install_debug.bat` and [report back](#windows_debug).
-
-| select package dialog : pip |
+| Animated steps 2, 3 & 4 |
 | --- |
-|<img src="img/win_install_pip.jpg"  alt='cannot load image' height=300px >|
-| select package dialog : qgis desktop |
-|<img src="img/win_install_qgisdesktop.jpg"  alt='cannot load image' height=300px >|
-| extracting zip, clicking installer_windows.bat, avoiding 'windows protected your pc' dialog |
-| <img src="img/extract_install.gif" alt='cannot load image' height=400px > |
-| 2nd time doesn't complain. Did all outputs looked successful?  |
-| <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
+| 2. Install the plugin requirements (on qgis's python) |
+|<img src="img/install_win_pip_requirements.gif"  alt='cannot load image' height=300px >|
+| 3. Add fire2a's plugin repository \& 4. Install the plugin __(FOR ALL PLATFORMS!!)__ <a id="my-anchor"></a>|
+|<img src="img/install_plugin_server.gif"  alt='cannot load image' height=300px >|
 
-### Windows_debug
-If any output looks like a failure message, run `installer_debug.bat` and let us now the output.  
-Copy the output from the command prompt window by:  
-        1. Selecting the text (left-click then select)  
-        2. Copy it by pressing the secondary mouse button (right button)  
-        3. Paste it into an email for the fire2a team or [create an issue](https://github.com/fdobad/fire2am-qgis-plugin/issues)  
-The installer checks only for these errors: "Qgis Environment failed", "Upgrading pip tools failed" & "Installing python packages failed".  
-The most common error is a `ModuleNotFoundError`, after [activation](#activate) meaning something silently failed installing pip packages (this will be automated on QGIS 3.8)  
+## Windows contingencies
+### B.1. Compiling
+See `C2F/Cell2FireC/README_VisualStudio.md`
+### B.2. Zipped release
+The zipped file is under 25MB so should be deriverable via e-mail  
+__This replaces step 3 of [normal instructions](#windows)__  
+1. Unzip it or extract contents, a new folder will appear `fire2am_v1.2.3\fire2am`  
+2. Copy or move the `fire2am` folder into `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\`  (tip: paste this direction in explorer.exe address bar)
 
-### Windows_manual 
+## Linux 🗽
+1. Install QGIS https://qgis.org/en/site/forusers/alldownloads.html#linux
+2. Install the plugin requirements (on qgis's python environment)  
+2.1 Download [requirements.txt](./requirements.txt)  
+2.A Bad practice: install directly into python env  
+```
+$ pip install --upgrade pip wheel setuptools
+$ pip install -r requirements.txt
+$ pip install --upgrade matplotlib
+```  
+    2.B Good practice: Make a python virtual environment (python3-venv required)
+```
+$ mkdir ~/<your_qgis_env_path>
+$ python3 -m venv --system-site-packages ~/<your_qgis_env_path>  
+$ source ~/<your_qgis_env_path>/bin/activate
+(your_env) $ pip install --upgrade pip wheel setuptools  
+(your_env) $ pip install -r requirements.txt  
+(your_env) $ pip install --upgrade matplotlib
+# all set! to launch QGIS:
+(your_env) $ qgis
+```
+    2.B Pro tip:
+```
+echo 'alias pyqgis="source ~/<your_qgis_env_path>/bin/activate"'>>~/.bashrc  
+echo 'alias qgis="source ~/<your_qgis_env_path>/bin/activate && qgis"'>>~/.bashrc
+```
+[see above](#my-anchor)
+3. Same as  [windows](#windows) step 3
+4. Same as  [windows](#windows) step 4
 
-1. If you do not have pip installed on your system, you will need to install it using the OsGeo4W Setup application. To do this:
-    1. Click the 'win' button and type 'osgeo4w-setup'
-    2. Launch the application
-    3. Select the 'pip' component from the package dialog and install it
-2. Once you have pip installed, open the OsGeo console and upgrade pip before installing the plugin requirements:
-    1. Click the 'win' button and type 'osgeo4w shell'
-    2. Type `pip install --upgrade pip setuptools wheel` and hit enter. If pip fails, try `python3 -m pip --upgrade pip`
-    3. Type `pip install -r C:\path\to\fire2am\requirements.txt` and hit enter. Note that in this step you must change 'C:\path\to\fire2am\requirements.txt' for your actual path to '\fire2am\requirements.txt'.
-    4. After installing the plugin requirements, move the source folder to QGIS's plugins directory. The path for this directory is `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am.`
+## Linux contingencies
+### B.1. Compiling
+```
+# apt install g++ libboost-all-dev libeigen3-dev
+$ cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
+$ make
+```
+If it fails, most likely is because `$EIGENDIR != /usr/include/eigen3/`. Check where your distribution installs `eigen`:
+```
+nice find / -readable -type d -name eigen3 2>/dev/null
+```
+Then edit `makefile` accordingly. Then try again: `make clean && make`
 
-Finally, enable the plugin inside QGIS. You can do this by following the instructions in the [Activate the Plugin section.](#activate). 
+### B.2. Zipped release
+The zipped file is under 25MB so should be deriverable via e-mail  
+__This replaces step 3 of [normal instructions](#windows)__  
+1. Unzip it or extract contents, new directory `fire2am_v1.2.3\fire2am`  
+2. Copy, move or symlink the `fire2am` folder into `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
 
-Take me back to [Windows💩 install instructions](#windows)
-
-## Linux
-0. Install QGIS  
-    - Debian LTR version: Super Key > type 'QGIS' > Click Install
-         - _SQL problems reported on Ubuntu🤡 jammy 22.04 (LTS)_
-    - Others: https://qgis.org/en/site/forusers/alldownloads.html#linux
-    - MacOS🤡: https://qgis.org/en/site/forusers/download.html#mac
+## TODO MacOS
     
-1. Donwload a [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) (ask fire2a team for permission to the repo), or get it by email
-2. Unzip it into the plugins folder (one level depth)
-    ```
-    cd ~/Downloads    # probably
-    
-    # release v>1.0
-    unzip fire2am.zip
-    mv fire2am/fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
-    
-    # release v<=1.0
-    unzip fire2am.zip -d fire2am
-    mv fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
-    ```
-2. Python requirements  
-    Recommended instead: [use a python virtual environment instead](readme_dev.md#venv)
-    ```
-    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am
-    pip install --upgrade pip wheel setuptools
-    pip install -r requirements.txt
-    pip install --upgrade matplotlib
-    ```  
-    - If failed because `pip: command not found`, then: `sudo apt install python3-pip` (debian)  
-
-3. A Cell2Fire c++ simulator binary is provided, nevertheless compiling it is trivial:  
-    ```
-    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
-    sudo apt install g++ libboost-all-dev libeigen3-dev
-    make
-    ```  
-    - If failed: check where your distribution installs eigen (`makefile` assumes `EIGENDIR = /usr/include/eigen3/`)  
-    Locate it with `nice find / -readable -type d -name eigen3 2>/dev/null`  
-    Then edit `makefile` file, `EIGENDIR = ` line to the found directory & `make` again.  
-    
-4. If you didn't compile, the binary might not have execution permission:  
+## Common *NIX problems
+If you didn't compile, the binary might not have execution permission:  
    ```
    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
    ls -l | grep Cell2Fire # pre check
    chmod u+x Cell2Fire
    ls -l | grep Cell2Fire # post check
    ```
-
-5. [Enable the plugin inside QGIS](#activate)  
-
 ## Forcing python requirements in QGIS console
 The last resort but very discouraged method to installing packages for the QGIS python environment, inside QGIS:  
 1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon <img src="img/python-logo-only.png"  alt='cannot load image' height=24px >  
@@ -191,7 +171,7 @@ The last resort but very discouraged method to installing packages for the QGIS 
 import pip
 pip.main(['install', 'my-package-name'])
 ```
-Replace 'my-package-name' and repeat this line with each package from the `requirements.txt` file (inside the zipped folder, [here](https://github.com/fdobad/fire2am-qgis-plugin/blob/main/requirements.txt) or [here](requirements.txt)), (ignore the warnings) and restart QGIS.  
+Replace 'my-package-name' and repeat this line with each package from the [requirements.txt](./requirements.txt) file, ignore the warnings and restart QGIS.  
 
 | force pip on python console |
 | --- |

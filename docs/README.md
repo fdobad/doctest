@@ -6,140 +6,163 @@
 
 This repo contains a  [QGIS plugin](https://plugins.qgis.org/) for graphically interfacing with [Cell2Fire Scott & Burgan](https://github.com/fire2a/C2FSB) forest fires simulator, test cases and a few extras.  
 
-The softwares enables you to simulate thousand of forest fires on any landscape, providede that you have a fuel raster with Scott and Burgan fuel types, inside [QGIS](https://qgis.org). 
+The softwares enables you to simulate thousand of forest fires on any landscape, provided a fuel raster -with Scott and Burgan fuel types; and [QGIS](https://qgis.org). 
 
-With the bare minumiun input being forest fuels. Other spatial inputs can include an elevation layer; canopy base height, bulk density or fraction cover; ignition probabilities, weather scenarios, moisture content, etc.
+With the bare minimun input being a forest fuels raster. Other spatial inputs can include: an elevation layer; canopies base height, bulk density and fraction cover; also ignition probabilities, weather scenarios, moisture content, protection values, etc.
 
-A cup-of-coffee run length is less than 500x500 raster with 50 simulations (simulations run in parallel, the maximum number of simultaneous runs can be adjusted via number of threads on the 'Optional Rules' tab) 
+A cup-of-coffee run length is around a 500x500 sized raster with 50 simulations on a modern laptop. Each fire simulation runs in parallel, though the overall load to the computer can be adjusted via the 'number of threads' parameter (see 'Optional Rules' tab).
 
-Depending on the number of simulations performend, this  plug in provides several outputs: 
-- If just one simulation is performed you can get: 
-    1. The Fire perimeter
-    2. The ignition point
-    3. Animated isochrones
-    4. Flame lenght, Byram Intensity, Rate of spread, etc. for each burned cell
-- If mode than one simulation is performed you can get
-    1. a Burn Probabilitie Map
-    2. a Betweenness Centrality Map
-    3. Maps of the Averages Flame lenght, Byram Intensity, Rate of spread, etc.
-Spatial outputs are stored as geopackages and numerical statistics are shown on the 'Tables' tab.  
+Several outputs are available:  
+1. Ignition point(s)
+2. Fire scars:  
+    2.1 Final or every n periods  
+    2.2 Animated isochrone  
+    2.2 Burn probability map (\>1 simulation)  
+3. Spatial statistics:  
+   3.1 Flame length  
+   3.2 Byram Intensity  
+   3.3 Rate of spread  
+   3.4 Downstream Protection Value (counting downstream burned cells if no ecological protection value layer is provided)  
+   3.5 Betweenness Centrality  
+4. Descriptive or numerical statistics (see 'Tables' tab):  
+   4.1 from the spatial ones  
+   4.2 runtime statistics  
+6. Plots (see 'Tables' tab):  
+  (WIP)
+
+Spatial outputs are shown and stored as geopackages (*.gpkg) along everything needed for reproducing the simulation(s) experiment.
+
+Currently the FIRE-RES team is working on a firebreak placement feature: Including  landspace clustering (for automatically infering management units) and stochastic network disrupting algorithms! Contact us at: fire2a@fire2a.com!
 
 [Install](#installation) then, choose your guide:
 - [User ](readme_user.md)![icon](img/icon.png)
 - [Expert ](readme_dev.md)![icon](img/icon_dev.png)
 
-_Most sections have a .gif animation at the end summarizing it._
-
 # Installation
-Overview (keep reading don't do this right away):
-- Ask the fire2a team for a zip file or access to the repository
-- pip install python required packages (on QGIS python environment). See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for information about QGIS environment. 
-- Move the source folder to QGIS's plugins directory. See this [link](algo.com/agregar_enlace_aqui/si_es_que_existe_uno) for more information about this step. 
-- Activate inside QGIS
+_Most sections have a .gif animation executing the instructions, so read till the end before executing._
 
-Choose your platform:
-- [Linux ](#linux)🗽
-- [Windows ](#windows)💩
+## Overview
+
+1. Install/update QGIS
+2. Install the plugin requirements (on QGIS's python environment)  
+
+Using QGIS's plugin manager interface:  
+
+3. Add fire2a plugin repository
+4. Install the plugin
+  
+B. Contingencies  
+1. Cell2Fire binary compatibility: See per-platform compiling instructions.  
+2. Network access problem to plugin repository: Ask the fire2a team for a zipped release  
+
+## Choose your platform:
+- [__Linux__ ](#linux)🗽
 - [MacOS ](#linux)🤡
+- [Windows ](#windows)💩
 
 ## Windows
-If you don't want to reinstall QGIS and understood the [overview](#installation), you can [manually install](#windows_manual).  
- 1. Install QGIS, using OSGeo4W net installer  
-    - https://qgis.org/en/site/forusers/alldownloads.html#osgeo4w-installer  
-    - Use default options for everything but
-    - Select packages to install "QGIS desktop" & "pip"
- 2. At least open and close QGIS once
- 3. Download & un7zip the latest [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) into `fire2am` (default suggested name)  
- 5. Inside `fire2am`, double click on `install_windows.bat`, a command prompt will launch and a warning dialog will rise.
-    - Click on 'More info' > 'Run anyway' on the warning dialog
-    - If anything fails, run the `install_debug.bat` and [report back](#windows_debug).
- 6. [Enable the plugin inside QGIS](#activate)
+1. Install or update QGIS, two alternatives:
+   
+    A. Download & install QGIS from: https://qgis.org/en/site/forusers/download.html#windows  
+    or B. Open a terminal, run: `winget install --id OSGeo.QGIS` follow on screen instructions
 
-| select package dialog : pip |
+2. Install the plugin requirements (on qgis's python). If this fails there's a last resort [here](<#forcing python requirements in QGIS console>)
+
+    2.1 Download [requirements.txt](./requirements.txt)  
+    2.2 Run "OsGeo4WShell" from the start menu  (Start > type 'osgeo' Enter)  
+    2.3 Enter `pip install -r "%USERPROFILE%\Downloads\requirements.txt"` (Modify the path to requirements file if needed; tip: 2dary click to paste in terminal)  
+   
+3. Add fire2a's plugin repository:
+
+    3.1 Open QGIS  
+    3.2 Menu Bar: Plugins > Manage and Install Plugins... > Settings > Add... (button at the bottom right of Plugin Repositories section)  
+    3.2 "Repository details" dialog opens. Fill inputs:  
+        "Name": any, though "Fire2a" is suggested  
+        "URL" input with "https://fdobad.github.io/qgis-plugin-server/plugins.xml"  
+   Confirm (Ok button), repos will be reloaded and a success state should be seen from the fire2a repository
+
+4. Install the plugin
+
+   4.1 On the same "Plugins" dialog, click "All" on the left vertical tab.  
+   4.2 Type "fire2am" on the Search...  
+   4.2 Select it from the list  
+   4.3 Click the install button  
+
+| Animated steps 2, 3 & 4 |
 | --- |
-|<img src="img/win_install_pip.jpg"  alt='cannot load image' height=300px >|
-| select package dialog : qgis desktop |
-|<img src="img/win_install_qgisdesktop.jpg"  alt='cannot load image' height=300px >|
-| extracting zip, clicking installer_windows.bat, avoiding 'windows protected your pc' dialog |
-| <img src="img/extract_install.gif" alt='cannot load image' height=400px > |
-| 2nd time doesn't complain. Did all outputs looked successful?  |
-| <img src="img/win_install_script.gif" alt='cannot load image' height=400px > |
+| 2. Install the plugin requirements (on qgis's python) |
+|<img src="img/install_win_pip_requirements.gif"  alt='cannot load image' height=300px >|
+| 3. Add fire2a's plugin repository & 4. Install the plugin __(FOR ALL PLATFORMS!!)__ <a id="my-anchor"></a> |
+|<img src="img/install_plugin_server.gif"  alt='cannot load image' height=300px >|
 
-### Windows_debug
-If any output looks like a failure message, run `installer_debug.bat` and let us now the output.  
-Copy the output from the command prompt window by:  
-        1. Selecting the text (left-click then select)  
-        2. Copy it by pressing the secondary mouse button (right button)  
-        3. Paste it into an email for the fire2a team or [create an issue](https://github.com/fdobad/fire2am-qgis-plugin/issues)  
-The installer checks only for these errors: "Qgis Environment failed", "Upgrading pip tools failed" & "Installing python packages failed".  
-The most common error is a `ModuleNotFoundError`, after [activation](#activate) meaning something silently failed installing pip packages (this will be automated on QGIS 3.8)  
+## Windows contingencies
+### B.1. Compiling
+See `fire2am/C2FSB/Cell2FireC/README_VisualStudio.md`
+### B.2. Zipped release
+The zipped file is under 25MB so should be deriverable via e-mail  
+__This replaces step 3 of [normal instructions](#windows)__  
+1. Unzip it or extract contents, a new folder will appear `fire2am_v1.2.3\fire2am`  
+2. Copy or move the `fire2am` folder into `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\`  (tip: paste this direction in explorer.exe address bar)
 
-### Windows_manual 
+## Linux 🗽
+1. Install QGIS https://qgis.org/en/site/forusers/alldownloads.html#linux
+2. Install the plugin requirements (on qgis's python environment)  
+2.1 Download [requirements.txt](./requirements.txt)  
+2.A Bad practice: install directly into python env  
+```
+$ pip install --upgrade pip wheel setuptools
+$ pip install -r requirements.txt
+$ pip install --upgrade matplotlib
+```  
+    2.B Good practice: Make a python virtual environment (python3-venv required)
+```
+$ mkdir ~/<your_qgis_env_path>
+$ python3 -m venv --system-site-packages ~/<your_qgis_env_path>  
+$ source ~/<your_qgis_env_path>/bin/activate
+(your_env) $ pip install --upgrade pip wheel setuptools  
+(your_env) $ pip install -r requirements.txt  
+(your_env) $ pip install --upgrade matplotlib
 
-1. If you do not have pip installed on your system, you will need to install it using the OsGeo4W Setup application. To do this:
-    1. Click the 'win' button and type 'osgeo4w-setup'
-    2. Launch the application
-    3. Select the 'pip' component from the package dialog and install it
-2. Once you have pip installed, open the OsGeo console and upgrade pip before installing the plugin requirements:
-    1. Click the 'win' button and type 'osgeo4w shell'
-    2. Type `pip install --upgrade pip setuptools wheel` and hit enter. If pip fails, try `python3 -m pip --upgrade pip`
-    3. Type `pip install -r C:\path\to\fire2am\requirements.txt` and hit enter. Note that in this step you must change 'C:\path\to\fire2am\requirements.txt' for your actual path to '\fire2am\requirements.txt'.
-    4. After installing the plugin requirements, move the source folder to QGIS's plugins directory. The path for this directory is `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\fire2am.`
+# launch QGIS:
+(your_env) $ qgis
+```
+    2.B Optional tip: Make aliases to activate & launch
+```
+echo 'alias pyqgis="source ~/<your_qgis_env_path>/bin/activate"'>>~/.bashrc  
+echo 'alias qgis="source ~/<your_qgis_env_path>/bin/activate && qgis"'>>~/.bashrc
+```
+3. [Add fire2a plugin repository](#my-anchor)
+4. [Install the plugin](#my-anchor)
 
-Finally, enable the plugin inside QGIS. You can do this by following the instructions in the [Activate the Plugin section.](#activate). 
+## Linux contingencies
+### B.1. Compiling
+```
+# apt install g++ libboost-all-dev libeigen3-dev
+$ cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
+$ make
+```
+If it fails, most likely is because `$EIGENDIR != /usr/include/eigen3/`. Check where your distribution installs `eigen`:
+```
+nice find / -readable -type d -name eigen3 2>/dev/null
+```
+Edit `makefile` accordingly, try again: `make clean && make`
 
-Take me back to [Windows💩 install instructions](#windows)
+### B.2. Zipped release
+The zipped file is under 25MB so should be deriverable via e-mail  
+__This replaces step 3 of [normal instructions](#windows)__  
+1. Unzip it or extract contents, new directory `fire2am_v1.2.3\fire2am`  
+2. Copy, move or symlink the `fire2am` folder into `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
 
-## Linux
-0. Install QGIS  
-    - Debian LTR version: Super Key > type 'QGIS' > Click Install
-         - _SQL problems reported on Ubuntu🤡 jammy 22.04 (LTS)_
-    - Others: https://qgis.org/en/site/forusers/alldownloads.html#linux
-    - MacOS🤡: https://qgis.org/en/site/forusers/download.html#mac
+## TODO MacOS
     
-1. Donwload a [release](https://github.com/fdobad/fire2am-qgis-plugin/releases) (ask fire2a team for permission to the repo), or get it by email
-2. Unzip it into the plugins folder (one level depth)
-    ```
-    cd ~/Downloads    # probably
-    
-    # release v>1.0
-    unzip fire2am.zip
-    mv fire2am/fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
-    
-    # release v<=1.0
-    unzip fire2am.zip -d fire2am
-    mv fire2am ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
-    ```
-2. Python requirements  
-    Recommended instead: [use a python virtual environment instead](readme_dev.md#venv)
-    ```
-    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am
-    pip install --upgrade pip wheel setuptools
-    pip install -r requirements.txt
-    pip install --upgrade matplotlib
-    ```  
-    - If failed because `pip: command not found`, then: `sudo apt install python3-pip` (debian)  
-
-3. A Cell2Fire c++ simulator binary is provided, nevertheless compiling it is trivial:  
-    ```
-    cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
-    sudo apt install g++ libboost-all-dev libeigen3-dev
-    make
-    ```  
-    - If failed: check where your distribution installs eigen (`makefile` assumes `EIGENDIR = /usr/include/eigen3/`)  
-    Locate it with `nice find / -readable -type d -name eigen3 2>/dev/null`  
-    Then edit `makefile` file, `EIGENDIR = ` line to the found directory & `make` again.  
-    
-4. If you didn't compile, the binary might not have execution permission:  
-   ```
-   cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
-   ls -l | grep Cell2Fire # pre check
-   chmod u+x Cell2Fire
-   ls -l | grep Cell2Fire # post check
-   ```
-
-5. [Enable the plugin inside QGIS](#activate)  
-
+## Common *NIX problems
+If you didn't compile, the binary might not have execution permission:  
+```
+cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/fire2am/C2FSB/Cell2FireC
+ls -l | grep Cell2Fire # pre check
+chmod u+x Cell2Fire
+ls -l | grep Cell2Fire # post check
+```
 ## Forcing python requirements in QGIS console
 The last resort but very discouraged method to installing packages for the QGIS python environment, inside QGIS:  
 1. Launch the [python console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html) by typing `Ctrl+Alt+P` or clicking on the python icon <img src="img/python-logo-only.png"  alt='cannot load image' height=24px >  
@@ -148,7 +171,7 @@ The last resort but very discouraged method to installing packages for the QGIS 
 import pip
 pip.main(['install', 'my-package-name'])
 ```
-Replace 'my-package-name' and repeat this line with each package from the `requirements.txt` file (inside the zipped folder, [here](https://github.com/fdobad/fire2am-qgis-plugin/blob/main/requirements.txt) or [here](requirements.txt)), (ignore the warnings) and restart QGIS.  
+Replace 'my-package-name' and repeat this line with each package from the [requirements.txt](./requirements.txt) file, ignore the warnings and restart QGIS.  
 
 | force pip on python console |
 | --- |
